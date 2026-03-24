@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día 4 — Juntos con Propósito</title>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FAF7F0;
+    --dark: #1C1C1C;
+    --accent: #0F766E;
+    --accent-glow: #5EEAD4;
+    --accent2: #C2410C;
+    --accent3: #7C3AED;
+    --accent-light: #CCFBF1;
+    --orange-light: #FFF7ED;
+    --purple-light: #EDE9FE;
+    --border: #E8E0D0;
+    --green: #059669;
+  }
+
+  body {
+    background: #EDEBE5;
+    font-family: 'Nunito', sans-serif;
+    color: var(--dark);
+    padding: 40px 20px;
+  }
+
+  .page {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--cream);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+    animation: fadeInUp 0.6s ease both;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .page:hover { box-shadow: 0 16px 60px rgba(0,0,0,0.22); }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── HEADER ─── */
+  .chapter-header {
+    background: #071A18;
+    padding: 48px 40px 44px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s ease;
+  }
+
+  .chapter-header:hover { background: #0D2926; }
+
+  .chapter-header::before {
+    content: '';
+    position: absolute;
+    top: -70px; right: -70px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.18;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .chapter-header:hover::before {
+    opacity: 0.28;
+    transform: scale(1.1);
+  }
+
+  .chapter-header::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; left: -20px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: var(--accent-glow);
+    opacity: 0.07;
+  }
+
+  /* Decoración — espejo SVG */
+  .deco-mirror {
+    position: absolute;
+    top: 18px; right: 40px;
+    opacity: 0.18;
+  }
+
+  .day-badge {
+    display: inline-block;
+    background: var(--accent-glow);
+    color: #071A18;
+    font-weight: 900;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .chapter-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 50px;
+    color: #FFFFFF;
+    line-height: 1.05;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .chapter-title span { color: var(--accent-glow); }
+
+  .chapter-subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.40);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  /* ─── CUERPO ─── */
+  .chapter-body { padding: 0 40px 48px; }
+
+  /* ─── LABELS ─── */
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-label .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  /* ─── VERSO ─── */
+  .section-verso { margin: 40px 0 0; }
+
+  .verso-card {
+    background: #071A18;
+    border-radius: 16px;
+    padding: 28px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .verso-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(15,118,110,0.28);
+  }
+
+  .verso-card::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    color: var(--accent-glow);
+    opacity: 0.13;
+    position: absolute;
+    top: -10px; left: 16px;
+    line-height: 1;
+  }
+
+  .verso-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-style: italic;
+    color: #FFFFFF;
+    line-height: 1.65;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .verso-ref {
+    font-size: 11px;
+    font-weight: 900;
+    color: var(--accent-glow);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .verso-corner {
+    position: absolute;
+    bottom: 14px; right: 18px;
+    opacity: 0.35;
+  }
+
+  /* ─── CONTEXTO ─── */
+  .section-contexto { margin-top: 36px; }
+
+  .contexto-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 28px;
+    color: var(--dark);
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+
+  .contexto-title span { color: var(--accent); }
+
+  .body-text {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #3A3A3A;
+    margin-bottom: 14px;
+  }
+
+  .highlight-box {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #134E4A;
+    line-height: 1.6;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
+
+  .highlight-box:hover {
+    transform: translateX(6px);
+    background: #A7F3D0;
+    box-shadow: 4px 4px 16px rgba(15,118,110,0.14);
+  }
+
+  /* ─── SEPARADOR ─── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 36px 0;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* ─── ANÉCDOTA ─── */
+  .section-anecdota {
+    background: var(--orange-light);
+    border-radius: 20px;
+    padding: 28px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .section-anecdota:hover {
+    box-shadow: 0 10px 32px rgba(194,65,12,0.13);
+  }
+
+  .section-anecdota::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; right: -30px;
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: var(--accent2);
+    opacity: 0.08;
+  }
+
+  .anecdota-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 8px;
+  }
+
+  .anecdota-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 22px;
+    color: var(--dark);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .anecdota-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #3A3A3A;
+    margin-bottom: 12px;
+  }
+
+  .sticky-note {
+    background: #FFFACD;
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 14px;
+    color: #5A4A00;
+    transform: rotate(-1.3deg);
+    display: inline-block;
+    margin: 8px 0 20px;
+    box-shadow: 2px 3px 8px rgba(0,0,0,0.10);
+    max-width: 300px;
+    line-height: 1.4;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .sticky-note:hover {
+    transform: rotate(0deg) scale(1.03);
+    box-shadow: 4px 6px 18px rgba(0,0,0,0.18);
+  }
+
+  .exhortacion-box {
+    background: #FFFFFF;
+    border-radius: 14px;
+    border: 2px solid var(--accent);
+    padding: 22px 24px;
+    margin-top: 16px;
+  }
+
+  .exhortacion-label {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  /* ─── ORACIÓN ─── */
+  .section-oracion {
+    margin-top: 36px;
+    background: #071A18;
+    border-radius: 20px;
+    padding: 28px 32px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .section-oracion:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 36px rgba(15,118,110,0.22);
+  }
+
+  .section-oracion::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: var(--accent-glow);
+    opacity: 0.07;
+  }
+
+  .oracion-icon {
+    flex-shrink: 0;
+    width: 48px; height: 48px;
+    background: rgba(94,234,212,0.12);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .oracion-content { flex: 1; }
+
+  .oracion-label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-glow);
+    margin-bottom: 8px;
+  }
+
+  .oracion-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.65;
+  }
+
+  /* ─── REFLEXIÓN ─── */
+  .section-reflexion { margin-top: 36px; }
+
+  .reflexion-badge {
+    background: var(--purple-light);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent3);
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+
+  .reflexion-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 26px;
+    color: var(--dark);
+    margin-bottom: 20px;
+  }
+
+  .pregunta-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 18px 20px;
+    border: 1.5px solid var(--border);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  }
+
+  .pregunta-item:hover {
+    transform: translateX(6px);
+    box-shadow: 0 6px 20px rgba(15,118,110,0.11);
+    border-color: var(--accent);
+  }
+
+  .pregunta-num {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 900;
+    color: white;
+  }
+
+  .pregunta-text {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #3A3A3A;
+    font-weight: 600;
+    padding-top: 4px;
+  }
+
+  /* ─── WRITE SPACE ─── */
+  .write-space {
+    border: 2px dashed var(--border);
+    border-radius: 16px;
+    padding: 0;
+    margin-top: 16px;
+    overflow: hidden;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    background: #FDFAF5;
+  }
+
+  .write-space:focus-within {
+    border-color: var(--accent);
+    border-style: solid;
+    box-shadow: 0 0 0 4px rgba(15,118,110,0.10);
+  }
+
+  .write-space-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px 10px;
+    border-bottom: 1.5px dashed var(--border);
+    background: #F7F3EA;
+  }
+
+  .write-space-label {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #AAAAAA;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .write-space-saved {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--green);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    letter-spacing: 1px;
+  }
+  .write-space-saved.visible { opacity: 1; }
+
+  .write-space textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    background: transparent;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14.5px;
+    font-weight: 500;
+    line-height: 1.75;
+    color: #3A3A3A;
+    padding: 18px 20px;
+    min-height: 140px;
+    caret-color: var(--accent);
+  }
+
+  .write-space textarea::placeholder {
+    color: #CCCCCC;
+    font-style: italic;
+  }
+
+  .write-space-footer {
+    padding: 8px 18px 12px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid rgba(0,0,0,0.04);
+  }
+
+  .ws-btn {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .ws-btn-clear {
+    background: transparent;
+    color: #BBBBBB;
+    border: 1.5px solid #E0E0E0;
+  }
+  .ws-btn-clear:hover {
+    background: #F0F0F0;
+    color: #888;
+    border-color: #C0C0C0;
+  }
+
+  .ws-btn-save {
+    background: var(--accent);
+    color: white;
+  }
+  .ws-btn-save:hover {
+    background: #0D5C56;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(15,118,110,0.30);
+  }
+
+  /* ─── RETO ─── */
+  .section-reto {
+    margin-top: 36px;
+    background: #071A18;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .section-reto:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(15,118,110,0.24);
+  }
+
+  .reto-top {
+    background: var(--accent-glow);
+    padding: 12px 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .reto-top-label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #071A18;
+  }
+
+  .reto-body {
+    padding: 24px 28px 28px;
+    position: relative;
+  }
+
+  .reto-body::before {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: var(--accent-glow);
+    opacity: 0.05;
+  }
+
+  .reto-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 26px;
+    color: var(--accent-glow);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .reto-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.80);
+    margin-bottom: 16px;
+  }
+
+  .reto-steps {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+
+  .reto-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .reto-steps li .step-num {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    background: rgba(94,234,212,0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 900;
+    color: var(--accent-glow);
+  }
+
+  .reto-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(94,234,212,0.10);
+    border: 1px solid rgba(94,234,212,0.22);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent-glow);
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .reto-tag:hover {
+    background: rgba(94,234,212,0.22);
+    border-color: rgba(94,234,212,0.45);
+    transform: scale(1.04);
+  }
+
+  /* ─── FOOTER ─── */
+  .chapter-footer {
+    border-top: 1.5px solid var(--border);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #AAAAAA;
+  }
+
+  .footer-page {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 22px;
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ══════════════════════════════════ -->
+  <!-- HEADER                            -->
+  <!-- ══════════════════════════════════ -->
+  <div class="chapter-header">
+
+    <!-- Decoración: espejo / figura humana de pie -->
+    <svg class="deco-mirror" width="80" height="100" viewBox="0 0 80 100">
+      <ellipse cx="40" cy="22" rx="16" ry="20" fill="none" stroke="#5EEAD4" stroke-width="1.5"/>
+      <line x1="40" y1="42" x2="40" y2="72" stroke="#5EEAD4" stroke-width="1.5"/>
+      <line x1="40" y1="55" x2="22" y2="46" stroke="#5EEAD4" stroke-width="1.5"/>
+      <line x1="40" y1="55" x2="58" y2="46" stroke="#5EEAD4" stroke-width="1.5"/>
+      <line x1="40" y1="72" x2="26" y2="90" stroke="#5EEAD4" stroke-width="1.5"/>
+      <line x1="40" y1="72" x2="54" y2="90" stroke="#5EEAD4" stroke-width="1.5"/>
+      <circle cx="40" cy="14" r="5" fill="#5EEAD4" opacity="0.4"/>
+    </svg>
+
+    <div class="day-badge">✦ Día 04 · 30 días</div>
+    <div class="chapter-title">Antes de ser<br><span>nosotros,</span> eres tú.</div>
+    <div class="chapter-subtitle">Identidad en Cristo · Gálatas 2:20</div>
+
+    <svg width="180" height="16" viewBox="0 0 180 16">
+      <path d="M0 8 Q15 0 30 8 Q45 16 60 8 Q75 0 90 8 Q105 16 120 8 Q135 0 150 8 Q165 16 180 8"
+        fill="none" stroke="#5EEAD4" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- ══════════════════════════════════ -->
+  <!-- CUERPO                            -->
+  <!-- ══════════════════════════════════ -->
+  <div class="chapter-body">
+
+    <!-- ── VERSO ── -->
+    <div class="section-verso">
+      <div class="section-label"><span class="dot"></span> Verso de hoy</div>
+
+      <div class="verso-card">
+        <p class="verso-text">
+          "Con Cristo estoy juntamente crucificado, y ya no vivo yo, mas vive Cristo en mí; y lo que ahora vivo en la carne, lo vivo en la fe del Hijo de Dios, el cual me amó y se entregó a sí mismo por mí."
+        </p>
+        <div class="verso-ref">Gálatas 2:20 · RVR60</div>
+
+        <!-- Cruz pequeña decorativa -->
+        <div class="verso-corner">
+          <svg width="36" height="44" viewBox="0 0 36 44">
+            <line x1="18" y1="2" x2="18" y2="42" stroke="#5EEAD4" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="4" y1="14" x2="32" y2="14" stroke="#5EEAD4" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CONTEXTO ── -->
+    <div class="section-contexto">
+      <div class="section-label" style="margin-top:36px;"><span class="dot" style="background:var(--accent2)"></span> Contexto del verso</div>
+
+      <div class="contexto-title">No eres quien el<br><span>mundo dijo que eras.</span></div>
+
+      <p class="body-text">
+        Pablo escribe Gálatas desde un lugar de profunda convicción personal. Él, que había sido Saulo — perseguidor, fanático, constructor de su propia identidad sobre la base de la religión y el desempeño — tuvo un encuentro que lo desarmó por completo. Y lo que escribe en Gálatas 2:20 no es teología abstracta: es el testimonio de alguien que descubrió que la identidad que tanto había construido no era la real.
+      </p>
+
+      <div class="highlight-box">
+        💡 "Ya no vivo yo" no es un llamado a desaparecer — es una invitación a descubrir quién eres verdaderamente, ahora que Cristo vive en ti.
+      </div>
+
+      <p class="body-text">
+        En el contexto del noviazgo, este verso habla de algo que pocas parejas se detienen a revisar: <em>¿quién eres tú, fuera de esta relación?</em> No quién eres cuando estás con esa persona, sino quién eres cuando estás solo frente a Dios. Porque una relación sana no es la que te da identidad — es la que se construye entre dos personas que ya saben quiénes son.
+      </p>
+
+      <p class="body-text">
+        Muchas parejas jóvenes cometen sin saberlo un error costoso: se fusionan. Uno deja de tener opiniones propias. El otro empieza a vivir para el otro. La relación se convierte en el centro de la existencia de ambos, y cuando hay una crisis — por pequeña que sea — todo se tambalea, porque no hay nada individual que sostenga el peso. Dios no diseñó el noviazgo para borrarte. Lo diseñó para que dos personas completas caminen juntas.
+      </p>
+    </div>
+
+    <!-- Separador -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <svg width="20" height="20" viewBox="0 0 20 20">
+        <circle cx="10" cy="10" r="6" fill="none" stroke="var(--accent)" stroke-width="1.5" opacity="0.5"/>
+        <circle cx="10" cy="10" r="2.5" fill="var(--accent)" opacity="0.4"/>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ── ANÉCDOTA ── -->
+    <div class="section-anecdota">
+      <div class="anecdota-label">
+        <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent2)"></span>
+        Desde la pluma del autor
+      </div>
+      <div class="anecdota-title">El muchacho que no<br>sabía su propio nombre.</div>
+
+      <p class="anecdota-text">
+        A los dieciséis años tuve una novia. Eso ya lo mencioné en el prefacio — la relación que terminó mal y que me empujó a buscar a Dios. Pero hay algo que no conté entonces, algo que solo entendí años después, cuando empecé a aconsejar a jóvenes parecidos a lo que yo era: en esa relación, yo no tenía identidad propia.
+      </p>
+
+      <p class="anecdota-text">
+        Ella era extrovertida, fuerte de carácter, con ideas muy claras sobre todo. Yo era el chico del barrio que trataba de impresionar, que no sabía muy bien qué quería de la vida, que encontraba en esa relación algo parecido a un espejo donde verme. Si ella estaba bien, yo estaba bien. Si ella estaba enojada, mi mundo se venía abajo. Mi estado de ánimo vivía en función del suyo. Y yo pensaba que eso era amor.
+      </p>
+
+      <div class="sticky-note">
+        "Confundí necesitarla con amarla. Y no son lo mismo."
+      </div>
+
+      <p class="anecdota-text">
+        Cuando la relación terminó, me derrumbé de una manera que no tenía proporción con el tiempo que habíamos estado juntos. No era solo el dolor de perderla a ella — era que sin ella, no sabía quién era yo. Me había construido encima de alguien más, y cuando ese alguien se fue, no quedó nada sólido debajo.
+      </p>
+
+      <p class="anecdota-text">
+        Tardé años en entender lo que había pasado. Fue en mis primeros meses de preparación ministerial, leyendo Gálatas por primera vez con ojos nuevos, que algo se acomodó por dentro. <em>"Ya no vivo yo."</em> No es que Pablo hubiera dejado de existir — es que había encontrado algo más real que su propia construcción de sí mismo. Y por primera vez entendí que yo también necesitaba eso antes de volver a amar a alguien.
+      </p>
+
+      <div class="exhortacion-box">
+        <div class="exhortacion-label">✦ Una palabra para ti</div>
+        <p class="anecdota-text" style="margin-bottom:12px;">
+          Antes de seguir avanzando en este devocional, quiero que se hagan una pregunta honesta — cada uno por separado, en silencio: <em>¿sé quién soy cuando no estoy con mi pareja?</em>
+        </p>
+        <p class="anecdota-text" style="margin-bottom:12px;">
+          No es una pregunta trampa. No significa que algo esté mal en su relación. Es simplemente la pregunta más importante que una persona puede hacerse antes de entregarse a otra: ¿tengo una identidad que no depende de ser amado para existir?
+        </p>
+        <p class="anecdota-text" style="margin-bottom:0;">
+          Porque Cristo no te llamó a disolverse en otra persona. Te llamó a ser completo en Él — para que lo que des en tu relación nazca de la plenitud, no de la necesidad.
+        </p>
+      </div>
+    </div>
+
+    <!-- Separador -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <svg width="20" height="20" viewBox="0 0 20 20">
+        <path d="M10 17 C10 17 3 13 3 7 C3 5 5 3 7.5 4 C8.8 4.5 9.5 5.5 10 6.5 C10.5 5.5 11.2 4.5 12.5 4 C15 3 17 5 17 7 C17 13 10 17 10 17Z" fill="var(--accent)" opacity="0.4"/>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ── ORACIÓN ── -->
+    <div class="section-oracion">
+      <div class="oracion-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <line x1="12" y1="3" x2="12" y2="21" stroke="#5EEAD4" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="4" y1="9" x2="20" y2="9" stroke="#5EEAD4" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="12" cy="3" r="1.5" fill="#5EEAD4"/>
+        </svg>
+      </div>
+      <div class="oracion-content">
+        <div class="oracion-label">✦ La oración del día</div>
+        <p class="oracion-text">
+          Hoy oren individualmente — cada uno a solas con Dios — pidiéndole que les revele quiénes son en Cristo, más allá de esta relación. Que les muestre qué partes de su identidad han puesto en manos de otra persona en lugar de en las Suyas. Y que les dé la valentía de construirse en Él primero.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── REFLEXIÓN ── -->
+    <div class="section-reflexion">
+      <div class="reflexion-badge">✦ Reflexionen</div>
+      <div class="reflexion-title">3 preguntas<br>para los dos</div>
+
+      <div class="pregunta-item">
+        <div class="pregunta-num">1</div>
+        <div class="pregunta-text">¿Hay áreas de tu vida — intereses, sueños, opiniones — que has dejado de cultivar desde que estás en esta relación? ¿Por qué?</div>
+      </div>
+
+      <div class="pregunta-item">
+        <div class="pregunta-num" style="background:var(--accent2);">2</div>
+        <div class="pregunta-text">¿Cómo describirías quién eres en Cristo, fuera de tu rol como novio o novia? ¿Te resulta fácil o difícil responder eso?</div>
+      </div>
+
+      <div class="pregunta-item">
+        <div class="pregunta-num" style="background:var(--accent3);">3</div>
+        <div class="pregunta-text">¿Alguna vez has sentido que tu estado de ánimo depende demasiado del estado de ánimo de tu pareja? ¿Qué revela eso sobre tu identidad?</div>
+      </div>
+
+      <!-- Textarea funcional -->
+      <div class="write-space">
+        <div class="write-space-header">
+          <span class="write-space-label">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d="M2 10.5L4.5 10 10.5 4 9 2.5 3 8.5 2 10.5Z" fill="#AAAAAA"/>
+            </svg>
+            ✏ Escribe aquí sus respuestas
+          </span>
+          <span class="write-space-saved" id="saved4">✓ Guardado</span>
+        </div>
+        <textarea id="respuestas4" placeholder="Compartan aquí sus pensamientos sobre las 3 preguntas de reflexión..."></textarea>
+        <div class="write-space-footer">
+          <button class="ws-btn ws-btn-clear" onclick="clearText('respuestas4','saved4')">Borrar</button>
+          <button class="ws-btn ws-btn-save" onclick="saveText('respuestas4','saved4')">Guardar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Separador -->
+    <div class="divider" style="margin-bottom:0;">
+      <div class="divider-line"></div>
+      <svg width="20" height="14" viewBox="0 0 20 14">
+        <path d="M2 7 L18 7 M13 2 L18 7 L13 12" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ── RETO ── -->
+    <div class="section-reto" style="margin-top:28px;">
+      <div class="reto-top">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <polygon points="7,1 8.8,5.2 13.5,5.6 10,8.6 11.1,13.2 7,10.6 2.9,13.2 4,8.6 0.5,5.6 5.2,5.2" fill="#071A18"/>
+        </svg>
+        <span class="reto-top-label">Reto de hoy · Día 4 de 30</span>
+      </div>
+
+      <div class="reto-body">
+        <div class="reto-title">El inventario de ti mismo</div>
+        <p class="reto-text">
+          Hoy cada uno hará un ejercicio personal — por separado, sin mostrárselo al otro todavía. En una hoja o en el teléfono, responde estas tres preguntas sobre ti mismo:
+        </p>
+
+        <ul class="reto-steps">
+          <li>
+            <span class="step-num">1</span>
+            <span><strong style="color:rgba(255,255,255,0.9);">¿Quién soy?</strong> — Escribe 5 palabras que te describan como persona, independientemente de esta relación.</span>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <span><strong style="color:rgba(255,255,255,0.9);">¿Qué me da vida?</strong> — Menciona 3 cosas que disfrutas o te apasionan que existían antes de esta relación y que siguen siendo tuyas.</span>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <span><strong style="color:rgba(255,255,255,0.9);">¿Qué dice Dios de mí?</strong> — Busca un verso bíblico que hable de tu identidad en Cristo y escríbelo. Si no conoces uno, usa Efesios 2:10.</span>
+          </li>
+        </ul>
+
+        <p class="reto-text">
+          El día 7, compartan sus respuestas el uno al otro. No para juzgarse — sino para conocerse más allá del amor que se tienen.
+        </p>
+
+        <div class="reto-tag">
+          📅 Seguimiento el día 7
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /chapter-body -->
+
+  <!-- FOOTER -->
+  <div class="chapter-footer">
+    <div class="footer-title">Juntos con Propósito · 30 Días</div>
+    <div class="footer-page">04</div>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+  const saved4 = localStorage.getItem('jcp_day4_respuestas');
+  if (saved4) document.getElementById('respuestas4').value = saved4;
+
+  function saveText(textareaId, savedLabelId) {
+    const val = document.getElementById(textareaId).value;
+    localStorage.setItem('jcp_day4_respuestas', val);
+    const label = document.getElementById(savedLabelId);
+    label.classList.add('visible');
+    setTimeout(() => label.classList.remove('visible'), 2000);
+  }
+
+  function clearText(textareaId, savedLabelId) {
+    if (confirm('¿Seguro que quieres borrar lo escrito?')) {
+      document.getElementById(textareaId).value = '';
+      localStorage.removeItem('jcp_day4_respuestas');
+    }
+  }
+
+  document.getElementById('respuestas4').addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = (this.scrollHeight) + 'px';
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juntos con Propósito — 30 Días</title>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FAF7F0;
+    --dark: #1C1C1C;
+    --gold: #F5A623;
+    --gold-light: #FFF3D6;
+    --rose: #E8437A;
+    --teal: #0D9488;
+    --border: #E8E0D0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #111111;
+    font-family: 'Nunito', sans-serif;
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,166,35,0.12) 0%, transparent 70%);
+    animation: pulse1 8s ease-in-out infinite;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -200px; right: -200px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,67,122,0.10) 0%, transparent 70%);
+    animation: pulse2 10s ease-in-out infinite;
+  }
+
+  @keyframes pulse1 {
+    0%, 100% { transform: scale(1) translate(0, 0); }
+    50% { transform: scale(1.15) translate(30px, 20px); }
+  }
+
+  @keyframes pulse2 {
+    0%, 100% { transform: scale(1) translate(0, 0); }
+    50% { transform: scale(1.2) translate(-20px, -30px); }
+  }
+
+  .particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0% { opacity: 0; transform: translateY(0) scale(0); }
+    20% { opacity: 1; }
+    80% { opacity: 0.5; }
+    100% { opacity: 0; transform: translateY(-120px) scale(1.5); }
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(245,166,35,0.12);
+    border: 1px solid rgba(245,166,35,0.30);
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(52px, 10vw, 100px);
+    line-height: 1.0;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.9s ease 0.1s both;
+  }
+
+  .hero-title .gold { color: var(--gold); }
+  .hero-title .rose { color: #FF8AB5; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-subtitle-line {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 3vw, 22px);
+    font-style: italic;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.9s ease 0.2s both;
+  }
+
+  .squiggle {
+    margin: 0 auto 40px;
+    display: block;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.9s ease 0.3s both;
+  }
+
+  .hero-desc {
+    max-width: 540px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.9s ease 0.35s both;
+  }
+
+  .hero-desc strong { color: var(--gold); font-weight: 800; }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: #111111;
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    animation: fadeUp 0.9s ease 0.4s both;
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 40px rgba(245,166,35,0.45);
+    background: #FFB800;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 64px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.9s ease 0.5s both;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .stat { text-align: center; }
+
+  .stat-num {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 36px;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-top: 4px;
+    display: block;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.4;
+    animation: bounce 2s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  .scroll-indicator span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  .section-author {
+    background: #181818;
+    padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-author::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(13,148,136,0.08) 0%, transparent 70%);
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 16px;
+  }
+
+  .section-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    display: inline-block;
+  }
+
+  .author-card {
+    background: #222222;
+    border-radius: 24px;
+    padding: 40px 44px;
+    display: flex;
+    gap: 36px;
+    align-items: flex-start;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .author-card:hover {
+    border-color: rgba(245,166,35,0.20);
+    box-shadow: 0 12px 48px rgba(0,0,0,0.40);
+  }
+
+  .author-avatar {
+    flex-shrink: 0;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 28px;
+    color: #111;
+  }
+
+  .author-info { flex: 1; }
+
+  .author-name {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 26px;
+    color: #FFFFFF;
+    margin-bottom: 4px;
+  }
+
+  .author-role {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .author-bio {
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.60);
+    margin-bottom: 20px;
+  }
+
+  .author-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245,166,35,0.10);
+    border: 1px solid rgba(245,166,35,0.25);
+    border-radius: 30px;
+    padding: 8px 18px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .author-link:hover { background: rgba(245,166,35,0.20); transform: translateX(3px); }
+
+  .section-chapters {
+    background: #111111;
+    padding: 80px 24px 100px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(32px, 6vw, 52px);
+    color: #FFFFFF;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .section-title span { color: var(--gold); }
+
+  .section-desc {
+    font-size: 15px;
+    color: rgba(255,255,255,0.45);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .chapters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .chapter-special {
+    grid-column: 1 / -1;
+    background: #1E1E1E;
+    border-radius: 20px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chapter-special::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(245,166,35,0.05) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .chapter-special:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.50);
+    border-color: rgba(245,166,35,0.25);
+    background: #242424;
+  }
+
+  .chapter-special:hover::before { opacity: 1; }
+
+  .special-icon {
+    flex-shrink: 0;
+    width: 56px; height: 56px;
+    background: rgba(245,166,35,0.12);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .chapter-special:hover .special-icon { background: rgba(245,166,35,0.22); transform: scale(1.1) rotate(-5deg); }
+
+  .special-content { flex: 1; }
+
+  .special-label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .special-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 22px;
+    color: #FFFFFF;
+    margin-bottom: 4px;
+  }
+
+  .special-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.40);
+    line-height: 1.5;
+  }
+
+  .special-arrow {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .chapter-special:hover .special-arrow { background: rgba(245,166,35,0.20); transform: translateX(4px); }
+
+  .chapter-card {
+    background: #1A1A1A;
+    border-radius: 18px;
+    padding: 24px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chapter-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    right: 0; height: 3px;
+    border-radius: 18px 18px 0 0;
+    background: var(--card-accent, var(--gold));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .chapter-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.50);
+    border-color: rgba(255,255,255,0.10);
+    background: #202020;
+  }
+
+  .chapter-card:hover::after { transform: scaleX(1); }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-day {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 32px;
+    line-height: 1;
+    color: var(--card-accent, var(--gold));
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+  }
+
+  .chapter-card:hover .card-day { opacity: 1; }
+
+  .card-verse {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.25);
+    text-align: right;
+    max-width: 120px;
+    line-height: 1.4;
+  }
+
+  .card-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 18px;
+    color: #FFFFFF;
+    line-height: 1.25;
+  }
+
+  .card-theme {
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.5px;
+  }
+
+  .card-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: auto;
+  }
+
+  .card-arrow svg {
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .chapter-card:hover .card-arrow svg { opacity: 1; transform: translateX(0); }
+
+  .site-footer {
+    background: #0A0A0A;
+    padding: 48px 24px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .footer-logo {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 28px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .footer-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 600px) {
+    .author-card { flex-direction: column; padding: 28px 24px; }
+    .chapters-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+
+<section class="hero">
+  <div class="hero-eyebrow">
+    <svg width="12" height="12" viewBox="0 0 12 12">
+      <path d="M6 1L7.3 4.4L11 4.7L8.3 7L9.2 10.8L6 8.9L2.8 10.8L3.7 7L1 4.7L4.7 4.4Z" fill="#F5A623"/>
+    </svg>
+    Devocional de pareja · 30 días
+  </div>
+
+  <h1 class="hero-title">
+    Juntos<br>con <span class="gold">Propósito</span>
+  </h1>
+
+  <p class="hero-subtitle-line">
+    Un reto de 30 días para reestructurar tu noviazgo
+  </p>
+
+  <svg class="squiggle" width="200" height="16" viewBox="0 0 200 16">
+    <path d="M0 8 Q14 0 28 8 Q42 16 56 8 Q70 0 84 8 Q98 16 112 8 Q126 0 140 8 Q154 16 168 8 Q182 0 200 8"
+      fill="none" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  </svg>
+
+  <p class="hero-desc">
+    Un devocional diseñado para parejas que deciden no conformarse con solo estar juntos — sino construir algo que valga la pena. <strong>30 capítulos, 30 retos, una sola dirección: hacia Dios.</strong>
+  </p>
+
+  <a href="#capitulos" class="hero-cta">
+    Comenzar el reto
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M3 8H13M9 4L13 8L9 12" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">30</span>
+      <span class="stat-label">Días de reto</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" style="color:#FF8AB5;">30</span>
+      <span class="stat-label">Capítulos</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" style="color:#5EEAD4;">1</span>
+      <span class="stat-label">Propósito</span>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Explorar</span>
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+      <path d="M4 7L9 12L14 7" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<section class="section-author">
+  <div class="container">
+    <div class="section-tag">Sobre el autor</div>
+    <div class="author-card">
+      <div class="author-avatar">CE</div>
+      <div class="author-info">
+        <div class="author-name">Carlos Ernesto Fuentes</div>
+        <div class="author-role">Pastor · Consejero matrimonial · Misionero</div>
+        <p class="author-bio">
+          Nacido en El Salvador, pastor y consejero con décadas de experiencia acompañando parejas en sus momentos más difíciles. Junto a su esposa española, vivieron años de misiones, criaron tres hijos y atravesaron sus propias crisis — desde las cuales nació este devocional. Escribe no desde la teoría, sino desde las cicatrices y la gracia.
+        </p>
+        <a href="Prefacio_JuntosConProposito.html" class="author-link">
+          Leer el prefacio completo →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-chapters" id="capitulos">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Los <span>30 días</span></h2>
+      <p class="section-desc">Cada capítulo tiene un verso, una historia, una oración, reflexiones y un reto. Ábrelos en orden — o donde sientan que los necesitan hoy.</p>
+    </div>
+
+    <div class="chapters-grid">
+
+      <!-- PREFACIO -->
+      <a href="Prefacio_JuntosConProposito.html" class="chapter-special">
+        <div class="special-icon">📖</div>
+        <div class="special-content">
+          <div class="special-label">Antes de comenzar</div>
+          <div class="special-title">Prefacio del autor</div>
+          <div class="special-desc">Una carta del pastor Carlos Ernesto — su historia, su llamado y por qué escribió este libro.</div>
+        </div>
+        <div class="special-arrow">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M9 4L13 8L9 12" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </a>
+
+      <!-- DÍA 1 -->
+      <a href="Capitulo1_JuntosConProposito.html" class="chapter-card" style="--card-accent:#F5A623;">
+        <div class="card-top">
+          <span class="card-day">01</span>
+          <span class="card-verse">Génesis 2:24</span>
+        </div>
+        <div class="card-title">El primer nosotros</div>
+        <div class="card-theme">Adán y Eva · Diseño de la pareja</div>
+        <div class="card-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9H14M10 5L14 9L10 13" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- DÍA 2 -->
+      <a href="Capitulo2_JuntosConProposito.html" class="chapter-card" style="--card-accent:#A78BFA;">
+        <div class="card-top">
+          <span class="card-day">02</span>
+          <span class="card-verse">Proverbios 19:21</span>
+        </div>
+        <div class="card-title">¿Y si esto tiene un para qué?</div>
+        <div class="card-theme">Propósito del noviazgo</div>
+        <div class="card-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9H14M10 5L14 9L10 13" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- DÍA 3 -->
+      <a href="Capitulo3_JuntosConProposito.html" class="chapter-card" style="--card-accent:#FCD34D;">
+        <div class="card-top">
+          <span class="card-day">03</span>
+          <span class="card-verse">Mateo 6:33</span>
+        </div>
+        <div class="card-title">El orden que lo cambia todo</div>
+        <div class="card-theme">Dios primero · Prioridades</div>
+        <div class="card-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9H14M10 5L14 9L10 13" stroke="#FCD34D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- DÍA 4 -->
+      <a href="Capitulo4_JuntosConProposito.html" class="chapter-card" style="--card-accent:#5EEAD4;">
+        <div class="card-top">
+          <span class="card-day">04</span>
+          <span class="card-verse">Gálatas 2:20</span>
+        </div>
+        <div class="card-title">Saber quién eres</div>
+        <div class="card-theme">Identidad en Cristo</div>
+        <div class="card-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9H14M10 5L14 9L10 13" stroke="#5EEAD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- DÍA 5 -->
+      <a href="Capitulo5_JuntosConProposito.html" class="chapter-card" style="--card-accent:#E8437A;">
+        <div class="card-top">
+          <span class="card-day">05</span>
+          <span class="card-verse">1 Corintios 13:4-5</span>
+        </div>
+        <div class="card-title">Más que un sentimiento</div>
+        <div class="card-theme">Amor vs emoción</div>
+        <div class="card-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9H14M10 5L14 9L10 13" stroke="#E8437A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- DÍA 6 -->
+      <a href="Capitulo6_JuntosConProposito.html" class="chapter-card" style="--card-accent:#FB923C;">
+        <div class="card-top">
+          <span class="card-day">06</span>
+          <span class="card-verse">Proverbios 29:11</span>
+        </div>
+        <div class="card-title">El fuego que nos quema</div>
+        <div class="card-theme">Control de la ira</div>
+        <div class="card-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9H14M10 5L14 9L10 13" stroke="#FB923C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- DÍA 7 -->
+      <a href="Capitulo7_JuntosConProposito.html" class="chapter-card" style="--card-accent:#FCA5A5;">
+        <div class="card-top">
+          <span class="card-day">07</span>
+          <span class="card-verse">Santiago 3:5-6</span>
+        </div>
+        <div class="card-title">Tan pequeña, tanto daño</div>
+        <div class="card-theme">El poder de la lengua</div>
+        <div class="card-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9H14M10 5L14 9L10 13" stroke="#FCA5A5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- DÍA 8 -->
+      <a href="Capitulo8_JuntosConProposito.html" class="chapter-card" style="--card-accent:#5EEAD4;">
+        <div class="card-top">
+          <span class="card-day">08</span>
+          <span class="card-verse">Gálatas 5:22-23</span>
+        </div>
+        <div class="card-title">La fuerza que no necesita gritar</div>
+        <div class="card-theme">Mansedumbre · Fruto del Espíritu</div>
+        <div class="card-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9H14M10 5L14 9L10 13" stroke="#5EEAD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- DÍA 9 -->
+      <a href="Capitulo9_JuntosConProposito.html" class="chapter-card" style="--card-accent:#86EFAC;">
+        <div class="card-top">
+          <span class="card-day">09</span>
+          <span class="card-verse">Filipenses 4:6-7</span>
+        </div>
+        <div class="card-title">Cuando el miedo se viste de preocupación</div>
+        <div class="card-theme">Ansiedad y confianza</div>
+        <div class="card-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9H14M10 5L14 9L10 13" stroke="#86EFAC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- DÍA 10 -->
+      <a href="Capitulo10_JuntosConProposito.html" class="chapter-card" style="--card-accent:#FDA4AF;">
+        <div class="card-top">
+          <span class="card-day">10</span>
+          <span class="card-verse">Proverbios 13:4</span>
+        </div>
+        <div class="card-title">Lo que postergamos hoy cobra mañana</div>
+        <div class="card-theme">Procrastinación</div>
+        <div class="card-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9H14M10 5L14 9L10 13" stroke="#FDA4AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- DÍA 11 -->
+      <a href="Capitulo11_JuntosConProposito.html" class="chapter-card" style="--card-accent:#C4B5FD;">
+        <div class="card-top">
+          <span class="card-day">11</span>
+          <span class="card-verse">Proverbios 10:4</span>
+        </div>
+        <div class="card-title">El que mucho desea y poco hace</div>
+        <div class="card-theme">Diligencia vs pereza</div>
+        <div class="card-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9H14M10 5L14 9L10 13" stroke="#C4B5FD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- DÍA 12 -->
+      <a href="Capitulo12_JuntosConProposito.html" class="chapter-card" style="--card-accent:#FDE68A;">
+        <div class="card-top">
+          <span class="card-day">12</span>
+          <span class="card-verse">Gálatas 6:5</span>
+        </div>
+        <div class="card-title">Carga tu propio costal</div>
+        <div class="card-theme">Responsabilidad personal</div>
+        <div class="card-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9H14M10 5L14 9L10 13" stroke="#FDE68A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- DÍA 13 -->
+      <a href="Capitulo13_JuntosConProposito.html" class="chapter-card" style="--card-accent:#6EE7B7;">
+        <div class="card-top">
+          <span class="card-day">13</span>
+          <span class="card-verse">Hebreos 11:8-11</span>
+        </div>
+        <div class="card-title">Creer juntos cuando no hay señales</div>
+        <div class="card-theme">Abraham y Sara · Fe en pareja</div>
+        <div class="card-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9H14M10 5L14 9L10 13" stroke="#6EE7B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- DÍA 14 -->
+      <a href="Capitulo14_JuntosConProposito.html" class="chapter-card" style="--card-accent:#F9A8D4;">
+        <div class="card-top">
+          <span class="card-day">14</span>
+          <span class="card-verse">Génesis 24:14</span>
+        </div>
+        <div class="card-title">La señal que nadie inventó</div>
+        <div class="card-theme">Isaac y Rebeca · Elección guiada por Dios</div>
+        <div class="card-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9H14M10 5L14 9L10 13" stroke="#F9A8D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- DÍA 15 -->
+      <a href="Capitulo15_JuntosConProposito.html" class="chapter-card" style="--card-accent:#BAE6FD;">
+        <div class="card-top">
+          <span class="card-day">15</span>
+          <span class="card-verse">Génesis 29:20</span>
+        </div>
+        <div class="card-title">Siete años que parecieron pocos</div>
+        <div class="card-theme">Jacob y Raquel · Amor con esfuerzo</div>
+        <div class="card-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9H14M10 5L14 9L10 13" stroke="#BAE6FD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- DÍA 16 -->
+      <a href="Capitulo16_JuntosConProposito.html" class="chapter-card" style="--card-accent:#FCA5A5;">
+        <div class="card-top">
+          <span class="card-day">16</span>
+          <span class="card-verse">Oseas 3:1</span>
+        </div>
+        <div class="card-title">Volver a amar cuando duele</div>
+        <div class="card-theme">Oseas y Gomer · Amor restaurador</div>
+        <div class="card-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9H14M10 5L14 9L10 13" stroke="#FCA5A5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- DÍAS 17–30 PRÓXIMAMENTE -->
+      <script>
+        const proximamente = [
+          { day: '17', color: '#A78BFA' },
+          { day: '18', color: '#FCD34D' },
+          { day: '19', color: '#6EE7B7' },
+          { day: '20', color: '#FB923C' },
+          { day: '21', color: '#E8437A' },
+          { day: '22', color: '#5EEAD4' },
+          { day: '23', color: '#FCA5A5' },
+          { day: '24', color: '#C4B5FD' },
+          { day: '25', color: '#FDE68A' },
+          { day: '26', color: '#86EFAC' },
+          { day: '27', color: '#F9A8D4' },
+          { day: '28', color: '#BAE6FD' },
+          { day: '29', color: '#FCD34D' },
+          { day: '30', color: '#F5A623' },
+        ];
+
+        proximamente.forEach(c => {
+          const el = document.createElement('div');
+          el.className = 'chapter-card';
+          el.style.cssText = `--card-accent:${c.color}; opacity:0.45; cursor:not-allowed;`;
+          el.innerHTML = `
+            <div class="card-top">
+              <span class="card-day">${c.day}</span>
+              <span class="card-verse" style="color:rgba(255,255,255,0.15);">Próximamente</span>
+            </div>
+            <div class="card-title" style="color:rgba(255,255,255,0.35);">Capítulo ${c.day}</div>
+            <div class="card-theme" style="color:rgba(255,255,255,0.20);">En construcción</div>
+            <div class="card-arrow">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="opacity:0.3;">
+                <path d="M9 4V14M4 9H14" stroke="${c.color}" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>`;
+          document.querySelector('.chapters-grid').appendChild(el);
+        });
+      </script>
+
+      <!-- CONCLUSIÓN -->
+      <a href="Conclusion_JuntosConProposito.html" class="chapter-special" style="opacity:0.5;pointer-events:none;margin-top:8px;">
+        <div class="special-icon">🎯</div>
+        <div class="special-content">
+          <div class="special-label">Al terminar los 30 días</div>
+          <div class="special-title">Conclusión del devocional</div>
+          <div class="special-desc">El cierre del viaje — disponible al completar los 30 días.</div>
+        </div>
+        <div class="special-arrow">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M9 4L13 8L9 12" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-logo">Juntos con Propósito</div>
+  <div class="footer-sub">30 días · Un reto devocional de pareja · Carlos Ernesto Fuentes</div>
+</footer>
+
+<script>
+  const container = document.getElementById('particles');
+  const colors = ['#F5A623', '#E8437A', '#5EEAD4', '#A78BFA', '#FCA5A5'];
+
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 6 + 3;
+    p.style.cssText = `
+      width: ${size}px;
+      height: ${size}px;
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      animation-delay: ${Math.random() * 6}s;
+      animation-duration: ${Math.random() * 4 + 5}s;
+    `;
+    container.appendChild(p);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationDelay = `${i * 0.05}s`;
+        entry.target.style.animation = 'fadeUp 0.5s ease both';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.chapter-card, .chapter-special').forEach(el => {
+    el.style.opacity = '0';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

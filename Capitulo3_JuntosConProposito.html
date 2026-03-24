@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día 3 — Juntos con Propósito</title>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FAF7F0;
+    --dark: #1C1C1C;
+    --accent: #D97706;
+    --accent-glow: #FCD34D;
+    --accent2: #059669;
+    --accent3: #DC2626;
+    --accent-light: #FEF3C7;
+    --green-light: #D1FAE5;
+    --border: #E8E0D0;
+  }
+
+  body {
+    background: #EDEBE5;
+    font-family: 'Nunito', sans-serif;
+    color: var(--dark);
+    padding: 40px 20px;
+  }
+
+  .page {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--cream);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .page:hover {
+    box-shadow: 0 16px 60px rgba(0,0,0,0.24);
+  }
+
+  /* ─── HEADER ─── */
+  .chapter-header {
+    background: #1C0A00;
+    padding: 48px 40px 44px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s ease;
+  }
+
+  .chapter-header:hover { background: #2A1000; }
+
+  .chapter-header::before {
+    content: '';
+    position: absolute;
+    top: -70px; right: -70px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.20;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .chapter-header:hover::before {
+    opacity: 0.30;
+    transform: scale(1.1);
+  }
+
+  .chapter-header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -20px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: var(--accent-glow);
+    opacity: 0.07;
+    transition: opacity 0.4s ease;
+  }
+
+  .chapter-header:hover::after { opacity: 0.13; }
+
+  .deco-sun {
+    position: absolute;
+    top: 18px; right: 42px;
+    opacity: 0.22;
+    transition: opacity 0.4s ease, transform 0.6s ease;
+  }
+
+  .chapter-header:hover .deco-sun {
+    opacity: 0.40;
+    transform: rotate(20deg) scale(1.1);
+  }
+
+  .day-badge {
+    display: inline-block;
+    background: var(--accent-glow);
+    color: #1C0A00;
+    font-weight: 900;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .day-badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 14px rgba(252,211,77,0.5);
+  }
+
+  .chapter-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 50px;
+    color: #FFFFFF;
+    line-height: 1.05;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .chapter-title span { color: var(--accent-glow); }
+
+  .chapter-subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.40);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  /* ─── CUERPO ─── */
+  .chapter-body { padding: 0 40px 48px; }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  /* ─── VERSO ─── */
+  .section-verso { margin: 40px 0 0; }
+
+  .verso-card {
+    background: #1C0A00;
+    border-radius: 16px;
+    padding: 28px 32px;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .verso-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(217,119,6,0.35);
+    background: #2A1200;
+    border-color: rgba(252,211,77,0.25);
+  }
+
+  .verso-card::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    color: var(--accent-glow);
+    opacity: 0.12;
+    position: absolute;
+    top: -10px; left: 16px;
+    line-height: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .verso-card:hover::before { opacity: 0.22; }
+
+  .verso-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-style: italic;
+    color: #FFFFFF;
+    line-height: 1.65;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .verso-ref {
+    font-size: 11px;
+    font-weight: 900;
+    color: var(--accent-glow);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ─── CONTEXTO ─── */
+  .section-contexto { margin-top: 36px; }
+
+  .contexto-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 28px;
+    color: var(--dark);
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+
+  .contexto-title span { color: var(--accent); }
+
+  .body-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #3A3A3A;
+    margin-bottom: 14px;
+  }
+
+  .highlight-box {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #78350F;
+    line-height: 1.6;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-left-color 0.25s ease;
+  }
+
+  .highlight-box:hover {
+    transform: translateX(4px);
+    box-shadow: 4px 6px 20px rgba(217,119,6,0.15);
+    border-left-color: var(--accent-glow);
+  }
+
+  /* ─── SEPARADOR ─── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 36px 0;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* ─── ANÉCDOTA ─── */
+  .section-anecdota {
+    background: var(--green-light);
+    border-radius: 20px;
+    padding: 28px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .section-anecdota:hover {
+    box-shadow: 0 10px 32px rgba(5,150,105,0.18);
+    border-color: rgba(5,150,105,0.25);
+    transform: translateY(-2px);
+  }
+
+  .section-anecdota::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; right: -30px;
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: var(--accent2);
+    opacity: 0.10;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .section-anecdota:hover::after {
+    opacity: 0.20;
+    transform: scale(1.2);
+  }
+
+  .anecdota-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #065F46;
+    margin-bottom: 8px;
+  }
+
+  .anecdota-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 22px;
+    color: var(--dark);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .anecdota-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #3A3A3A;
+    margin-bottom: 12px;
+  }
+
+  .sticky-note {
+    background: #FFFACD;
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 14px;
+    color: #5A4A00;
+    transform: rotate(-1deg);
+    display: inline-block;
+    margin: 8px 0 20px;
+    box-shadow: 2px 3px 8px rgba(0,0,0,0.10);
+    max-width: 320px;
+    line-height: 1.4;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: default;
+  }
+
+  .sticky-note:hover {
+    transform: rotate(0deg) scale(1.02);
+    box-shadow: 4px 6px 18px rgba(0,0,0,0.18);
+  }
+
+  .exhortacion-box {
+    background: #FFFFFF;
+    border-radius: 14px;
+    border: 2px solid var(--accent2);
+    padding: 22px 24px;
+    margin-top: 16px;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .exhortacion-box:hover {
+    box-shadow: 0 8px 28px rgba(5,150,105,0.20);
+    border-color: #34D399;
+    transform: translateY(-2px);
+  }
+
+  .exhortacion-label {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 12px;
+  }
+
+  /* ─── ORACIÓN ─── */
+  .section-oracion {
+    margin-top: 36px;
+    background: #1C0A00;
+    border-radius: 20px;
+    padding: 28px 32px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .section-oracion:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(217,119,6,0.30);
+    background: #2A1200;
+    border-color: rgba(252,211,77,0.20);
+  }
+
+  .section-oracion::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.10;
+    transition: opacity 0.3s ease;
+  }
+
+  .section-oracion:hover::before { opacity: 0.18; }
+
+  .oracion-icon {
+    flex-shrink: 0;
+    width: 48px; height: 48px;
+    background: rgba(252,211,77,0.12);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .section-oracion:hover .oracion-icon {
+    background: rgba(252,211,77,0.22);
+    transform: scale(1.08);
+  }
+
+  .oracion-content { flex: 1; }
+
+  .oracion-label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-glow);
+    margin-bottom: 8px;
+  }
+
+  .oracion-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.65;
+  }
+
+  /* ─── REFLEXIÓN ─── */
+  .section-reflexion { margin-top: 36px; }
+
+  .reflexion-badge {
+    background: var(--accent-light);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+
+  .reflexion-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 26px;
+    color: var(--dark);
+    margin-bottom: 20px;
+  }
+
+  .pregunta-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 18px 20px;
+    border: 1.5px solid var(--border);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    cursor: default;
+  }
+
+  .pregunta-item:hover {
+    transform: translateX(5px);
+    box-shadow: 6px 6px 20px rgba(0,0,0,0.09);
+    border-color: var(--accent);
+    background: #FFFBF5;
+  }
+
+  .pregunta-item:nth-child(2):hover { border-color: var(--accent2); }
+  .pregunta-item:nth-child(3):hover { border-color: var(--accent3); }
+
+  .pregunta-num {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 900;
+    color: white;
+    transition: transform 0.25s ease;
+  }
+
+  .pregunta-item:hover .pregunta-num { transform: scale(1.15) rotate(-5deg); }
+
+  .pregunta-text {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #3A3A3A;
+    font-weight: 600;
+    padding-top: 4px;
+  }
+
+  /* ─── ÁREA DE ESCRITURA ─── */
+  .write-area-wrapper {
+    margin-top: 16px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 2px solid var(--border);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .write-area-wrapper:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(217,119,6,0.12);
+  }
+
+  .write-area-header {
+    background: var(--accent-light);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .write-area-header span {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #78350F;
+  }
+
+  .write-textarea {
+    width: 100%;
+    min-height: 110px;
+    padding: 16px 18px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #3A3A3A;
+    background: #FFFFFF;
+    border: none;
+    outline: none;
+    resize: vertical;
+  }
+
+  .write-textarea::placeholder { color: #C0B8A8; font-style: italic; }
+
+  /* ─── RETO ─── */
+  .section-reto {
+    margin-top: 36px;
+    background: #1C0A00;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .section-reto:hover {
+    box-shadow: 0 12px 40px rgba(252,211,77,0.18);
+    border-color: rgba(252,211,77,0.15);
+  }
+
+  .reto-top {
+    background: var(--accent-glow);
+    padding: 12px 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .reto-top-label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #1C0A00;
+  }
+
+  .reto-body {
+    padding: 24px 28px 28px;
+    position: relative;
+  }
+
+  .reto-body::before {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: var(--accent-glow);
+    opacity: 0.05;
+  }
+
+  .reto-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 26px;
+    color: var(--accent-glow);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .reto-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.78);
+    margin-bottom: 16px;
+  }
+
+  /* ─── TRACKER INTERACTIVO ─── */
+  .tracker {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .tracker-day {
+    flex: 1;
+    background: rgba(252,211,77,0.07);
+    border: 1.5px solid rgba(252,211,77,0.18);
+    border-radius: 14px;
+    padding: 14px 6px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+    user-select: none;
+  }
+
+  .tracker-day:hover {
+    background: rgba(252,211,77,0.15);
+    border-color: rgba(252,211,77,0.45);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(252,211,77,0.18);
+  }
+
+  .tracker-day.done {
+    background: rgba(252,211,77,0.18);
+    border-color: var(--accent-glow);
+    box-shadow: 0 4px 16px rgba(252,211,77,0.25);
+  }
+
+  .tracker-day .t-num {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: rgba(252,211,77,0.6);
+    margin-bottom: 10px;
+    display: block;
+    transition: color 0.25s ease;
+  }
+
+  .tracker-day.done .t-num { color: var(--accent-glow); }
+
+  .tracker-day .t-check {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: 2px solid rgba(252,211,77,0.28);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+
+  .tracker-day.done .t-check {
+    border-color: var(--accent-glow);
+    background: rgba(252,211,77,0.20);
+  }
+
+  .tracker-day .t-check svg {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .tracker-day.done .t-check svg {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .reto-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(252,211,77,0.10);
+    border: 1px solid rgba(252,211,77,0.22);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent-glow);
+    margin-top: 4px;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .reto-tag:hover {
+    background: rgba(252,211,77,0.18);
+    transform: scale(1.03);
+  }
+
+  /* ─── FOOTER ─── */
+  .chapter-footer {
+    border-top: 1.5px solid var(--border);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s ease;
+  }
+
+  .chapter-footer:hover { background: #F5F0E8; }
+
+  .footer-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #AAAAAA;
+  }
+
+  .footer-page {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 22px;
+    color: var(--accent);
+    transition: transform 0.2s ease;
+  }
+
+  .chapter-footer:hover .footer-page { transform: scale(1.1); }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ══════════════════════════════════ -->
+  <!-- HEADER                            -->
+  <!-- ══════════════════════════════════ -->
+  <div class="chapter-header">
+    <svg class="deco-sun" width="100" height="100" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="22" fill="#FCD34D"/>
+      <line x1="50" y1="10" x2="50" y2="22" stroke="#FCD34D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="50" y1="78" x2="50" y2="90" stroke="#FCD34D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="10" y1="50" x2="22" y2="50" stroke="#FCD34D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="78" y1="50" x2="90" y2="50" stroke="#FCD34D" stroke-width="3" stroke-linecap="round"/>
+      <line x1="22" y1="22" x2="30" y2="30" stroke="#FCD34D" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="70" y1="70" x2="78" y2="78" stroke="#FCD34D" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="78" y1="22" x2="70" y2="30" stroke="#FCD34D" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="30" y1="70" x2="22" y2="78" stroke="#FCD34D" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+
+    <div class="day-badge">✦ Día 03 · 30 días</div>
+    <div class="chapter-title">El orden que<br>lo cambia <span>todo</span></div>
+    <div class="chapter-subtitle">Dios primero · Mateo 6:33</div>
+
+    <svg width="180" height="16" viewBox="0 0 180 16" style="margin-top:8px;">
+      <path d="M0 8 Q15 0 30 8 Q45 16 60 8 Q75 0 90 8 Q105 16 120 8 Q135 0 150 8 Q165 16 180 8"
+        fill="none" stroke="#FCD34D" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- ══════════════════════════════════ -->
+  <!-- CUERPO                            -->
+  <!-- ══════════════════════════════════ -->
+  <div class="chapter-body">
+
+    <!-- ── VERSO ── -->
+    <div class="section-verso">
+      <div class="section-label"><span class="dot"></span> Verso de hoy</div>
+      <div class="verso-card">
+        <p class="verso-text">
+          "Mas buscad primeramente el reino de Dios y su justicia, y todas estas cosas os serán añadidas."
+        </p>
+        <div class="verso-ref">Mateo 6:33 · RVR60</div>
+        <div style="position:absolute;bottom:14px;right:20px;opacity:0.30;transition:opacity 0.3s ease;">
+          <svg width="38" height="38" viewBox="0 0 38 38">
+            <circle cx="19" cy="19" r="10" fill="#FCD34D"/>
+            <line x1="19" y1="4" x2="19" y2="11" stroke="#FCD34D" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="19" y1="27" x2="19" y2="34" stroke="#FCD34D" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="4" y1="19" x2="11" y2="19" stroke="#FCD34D" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="27" y1="19" x2="34" y2="19" stroke="#FCD34D" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CONTEXTO ── -->
+    <div class="section-contexto">
+      <div class="section-label" style="margin-top:36px;"><span class="dot" style="background:var(--accent2)"></span> Contexto del verso</div>
+      <div class="contexto-title">Una sola palabra<br><span>que lo reordena todo.</span></div>
+      <p class="body-text">
+        Jesús no pronunció estas palabras en un templo. Las dijo en una ladera, rodeado de gente común — pescadores, agricultores, madres, jóvenes — personas con deudas reales, familias reales, miedos reales. Y en medio de toda esa ansiedad humana, no les ofreció un plan financiero ni una lista de soluciones. Les ofreció algo mucho más radical: un orden.
+      </p>
+      <div class="highlight-box">
+        💡 La palabra "primeramente" en el griego original es <em>proton</em> — antes que todo lo demás, en el primer lugar, sin excepción. No es una sugerencia de prioridad, es una declaración de orden.
+      </div>
+      <p class="body-text">
+        Lo que Jesús estaba diciendo es que el problema no era que la gente quisiera cosas — comida, ropa, estabilidad, futuro. El problema era el orden en que las buscaban. Cuando Dios ocupa el primer lugar, todas las demás cosas encuentran el suyo. Cuando no lo ocupa, todo compite por un lugar que ninguna cosa terrenal puede llenar.
+      </p>
+      <p class="body-text">
+        En el noviazgo esto se traduce de forma muy concreta: una pareja que pone a Dios primero no es una pareja perfecta — es una pareja ordenada. Sus decisiones tienen una brújula. Sus conflictos tienen un árbitro. Su amor tiene una fuente que no depende del estado de ánimo de ninguno de los dos.
+      </p>
+    </div>
+
+    <!-- Separador -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <svg width="22" height="22" viewBox="0 0 22 22">
+        <circle cx="11" cy="11" r="8" fill="none" stroke="var(--accent)" stroke-width="1.5" opacity="0.5"/>
+        <circle cx="11" cy="11" r="3" fill="var(--accent)" opacity="0.6"/>
+        <line x1="11" y1="3" x2="11" y2="7" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ── ANÉCDOTA ── -->
+    <div class="section-anecdota">
+      <div class="anecdota-label">
+        <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#065F46;"></span>
+        Desde la pluma del autor
+      </div>
+      <div class="anecdota-title">La noche en que nos<br>buscamos culpables.</div>
+      <p class="anecdota-text">
+        Llevábamos menos de un año de casados cuando llegó la primera crisis de verdad. No fue una discusión sobre quién lavaba los platos — fue una noche en que el dinero no alcanzaba, el bebé venía en camino, la iglesia que estábamos plantando apenas sobrevivía, y los dos estábamos agotados de una forma que ninguno sabía cómo decirle al otro.
+      </p>
+      <p class="anecdota-text">
+        Recuerdo que ella estaba sentada en el borde de la cama con los ojos aguados, y yo estaba de pie junto a la ventana mirando hacia afuera como si la respuesta estuviera en la oscuridad. Discutimos. No con gritos — con esa frialdad que duele más. Palabras calculadas. Silencios largos. Y en algún punto de esa noche me di cuenta de algo que me golpeó fuerte: hacía semanas que no orábamos juntos. Hacía semanas que ninguno de los dos había puesto a Dios primero — ni en nuestra agenda, ni en nuestras decisiones, ni en esa conversación.
+      </p>
+      <div class="sticky-note">
+        "Cuando dejamos de buscar a Dios juntos, empezamos a buscarnos culpables el uno al otro."
+      </div>
+      <p class="anecdota-text">
+        Esa noche, en lugar de seguir discutiendo, hice algo que me costó más orgullo del que quisiera admitir: me arrodillé. Le pedí a ella que se arrodillara conmigo. Y oramos. Torpemente, con palabras rotas, sin saber bien ni qué pedir. Pero lo hicimos juntos. Y algo en el cuarto cambió — no nuestras circunstancias, sino nosotros.
+      </p>
+      <div class="exhortacion-box">
+        <div class="exhortacion-label">✦ Una palabra para ti</div>
+        <p class="anecdota-text" style="margin-bottom:12px;">
+          Hay parejas que leen este capítulo y dicen: "nosotros sí ponemos a Dios primero." Y puede que sea cierto en las palabras. Pero te hago una pregunta más específica: ¿cuándo fue la última vez que tomaron una decisión importante juntos y antes de decidir buscaron a Dios? ¿Cuándo fue la última vez que oraron juntos — no en un culto, no en una cena familiar, sino los dos solos, con sus propias palabras?
+        </p>
+        <p class="anecdota-text" style="margin-bottom:12px;">
+          Poner a Dios primero no es una postura teológica. Es un hábito diario. Y los hábitos no se declaran — se practican. Una pareja que ora junta no es una pareja que nunca pelea. Es una pareja que sabe a dónde ir cuando pelea.
+        </p>
+        <p class="anecdota-text" style="margin-bottom:0;">
+          Si hoy sientes que algo en su relación está desordenado — tensión sin resolver, distancia que no saben nombrar, decisiones que no terminan de cerrarse bien — antes de buscar la causa afuera, pregúntense juntos: <em>¿cuándo fue la última vez que lo buscamos a Él primero?</em>
+        </p>
+      </div>
+    </div>
+
+    <!-- Separador -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <svg width="20" height="20" viewBox="0 0 20 20">
+        <circle cx="10" cy="10" r="4" fill="var(--accent)" opacity="0.5"/>
+        <circle cx="4" cy="10" r="2.5" fill="var(--accent)" opacity="0.25"/>
+        <circle cx="16" cy="10" r="2.5" fill="var(--accent)" opacity="0.25"/>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ── ORACIÓN ── -->
+    <div class="section-oracion">
+      <div class="oracion-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="8" r="5" stroke="#FCD34D" stroke-width="1.8"/>
+          <path d="M5 20C5 17 8 15 12 15C16 15 19 17 19 20" stroke="#FCD34D" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="12" y1="3" x2="12" y2="1" stroke="#FCD34D" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="16.5" y1="4.5" x2="17.9" y2="3.1" stroke="#FCD34D" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="oracion-content">
+        <div class="oracion-label">✦ La oración del día</div>
+        <p class="oracion-text">
+          Hoy oren juntos por el valor de poner a Dios en el primer lugar — no solo de palabra, sino en las decisiones concretas de su noviazgo. Pídanle que les muestre en qué áreas de su relación Él todavía no está en el centro, y que les dé la humildad para cederle ese lugar.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── REFLEXIÓN ── -->
+    <div class="section-reflexion">
+      <div class="reflexion-badge">✦ Reflexionen</div>
+      <div class="reflexion-title">3 preguntas<br>para los dos</div>
+
+      <div class="pregunta-item">
+        <div class="pregunta-num">1</div>
+        <div class="pregunta-text">Si analizaran sus últimas 5 decisiones importantes como pareja, ¿en cuántas buscaron a Dios antes de decidir?</div>
+      </div>
+      <div class="pregunta-item">
+        <div class="pregunta-num" style="background:var(--accent2);">2</div>
+        <div class="pregunta-text">¿Hay algún área de su relación donde sientan que Dios no tiene el primer lugar? ¿Cuál es y por qué creen que es así?</div>
+      </div>
+      <div class="pregunta-item">
+        <div class="pregunta-num" style="background:var(--accent3);">3</div>
+        <div class="pregunta-text">¿Qué tendría que cambiar concretamente en su rutina como pareja para que buscar a Dios juntos sea lo primero del día?</div>
+      </div>
+
+      <!-- Área de escritura interactiva -->
+      <div class="write-area-wrapper">
+        <div class="write-area-header">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 10L5 9L12 2L12 2C12.6 1.4 13.6 1.4 14.2 2L14.2 2C14.8 2.6 14.8 3.6 14.2 4.2L7 11.5L2 12L2 10Z" stroke="#78350F" stroke-width="1.2" stroke-linejoin="round"/>
+            <line x1="10" y1="3.5" x2="12.5" y2="6" stroke="#78350F" stroke-width="1.2"/>
+          </svg>
+          <span>✏ Escribe aquí sus respuestas</span>
+        </div>
+        <textarea class="write-textarea" placeholder="Anoten juntos sus pensamientos, lo que descubrieron, lo que quieren recordar de este día..."></textarea>
+      </div>
+    </div>
+
+    <!-- Separador -->
+    <div class="divider" style="margin-bottom:0;">
+      <div class="divider-line"></div>
+      <svg width="20" height="14" viewBox="0 0 20 14">
+        <path d="M2 7 L18 7 M13 2 L18 7 L13 12" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ── RETO ── -->
+    <div class="section-reto" style="margin-top:28px;">
+      <div class="reto-top">
+        <svg width="14" height="14" viewBox="0 0 14 14">
+          <circle cx="7" cy="7" r="5" fill="#1C0A00"/>
+          <line x1="7" y1="2" x2="7" y2="5" stroke="#1C0A00" stroke-width="2" stroke-linecap="round"/>
+          <line x1="7" y1="9" x2="7" y2="12" stroke="#1C0A00" stroke-width="2" stroke-linecap="round"/>
+          <line x1="2" y1="7" x2="5" y2="7" stroke="#1C0A00" stroke-width="2" stroke-linecap="round"/>
+          <line x1="9" y1="7" x2="12" y2="7" stroke="#1C0A00" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="reto-top-label">Reto de hoy · Día 3 de 30</span>
+      </div>
+
+      <div class="reto-body">
+        <div class="reto-title">5 días, 5 minutos,<br>los dos primero.</div>
+        <p class="reto-text">
+          Durante los próximos 5 días, antes de que el día los separe, buscan a Dios juntos. No hace falta que sea largo ni perfecto. Solo tiene que ser primero. Puede ser una oración corta, un verso, o simplemente decirle juntos: <em>"Señor, este día es tuyo."</em>
+        </p>
+        <p class="reto-text">Toca cada día del tracker cuando lo cumplan 👇</p>
+
+        <!-- Tracker interactivo -->
+        <div class="tracker" id="tracker">
+          <div class="tracker-day" onclick="toggleDay(this)">
+            <span class="t-num">DÍA 3</span>
+            <div class="t-check">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2.5 7L5.5 10L11.5 4" stroke="#FCD34D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="tracker-day" onclick="toggleDay(this)">
+            <span class="t-num">DÍA 4</span>
+            <div class="t-check">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2.5 7L5.5 10L11.5 4" stroke="#FCD34D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="tracker-day" onclick="toggleDay(this)">
+            <span class="t-num">DÍA 5</span>
+            <div class="t-check">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2.5 7L5.5 10L11.5 4" stroke="#FCD34D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="tracker-day" onclick="toggleDay(this)">
+            <span class="t-num">DÍA 6</span>
+            <div class="t-check">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2.5 7L5.5 10L11.5 4" stroke="#FCD34D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="tracker-day" onclick="toggleDay(this)">
+            <span class="t-num">DÍA 7</span>
+            <div class="t-check">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2.5 7L5.5 10L11.5 4" stroke="#FCD34D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mensaje de progreso -->
+        <div id="tracker-msg" style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:16px;min-height:20px;transition:all 0.3s ease;"></div>
+
+        <div class="reto-tag">📅 Seguimiento el día 5</div>
+      </div>
+    </div>
+
+  </div><!-- /chapter-body -->
+
+  <!-- FOOTER -->
+  <div class="chapter-footer">
+    <div class="footer-title">Juntos con Propósito · 30 Días</div>
+    <div class="footer-page">03</div>
+  </div>
+
+</div>
+
+<script>
+  function toggleDay(el) {
+    el.classList.toggle('done');
+    updateMsg();
+  }
+
+  function updateMsg() {
+    const days = document.querySelectorAll('.tracker-day');
+    const done = document.querySelectorAll('.tracker-day.done').length;
+    const msg = document.getElementById('tracker-msg');
+    const messages = [
+      '',
+      '¡Primer día completado! El primer paso es el más importante. 🌅',
+      '¡Dos días seguidos! El hábito está tomando forma. 🔥',
+      '¡Tres días! Ya están más de la mitad. Sigan así. ✨',
+      '¡Cuatro días! Casi lo logran. Un día más. 💪',
+      '¡Lo lograron los 5 días! El Señor vio cada mañana que lo eligieron primero. 🙌'
+    ];
+    msg.textContent = messages[done] || '';
+    msg.style.color = done === 5 ? '#FCD34D' : 'rgba(255,255,255,0.55)';
+  }
+</script>
+
+</body>
+</html>

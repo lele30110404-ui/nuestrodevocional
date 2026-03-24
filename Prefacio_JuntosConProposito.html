@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prefacio — Juntos con Propósito</title>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FAF7F0;
+    --dark: #1C1C1C;
+    --accent: #F5A623;
+    --accent2: #E8437A;
+    --accent3: #4A90D9;
+    --accent-light: #FFF3D6;
+    --pink-light: #FDE8F0;
+    --blue-light: #E8F2FC;
+    --border: #E8E0D0;
+  }
+
+  body {
+    background: #EDEBE5;
+    font-family: 'Nunito', sans-serif;
+    color: var(--dark);
+    padding: 40px 20px;
+  }
+
+  .page {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--cream);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+    animation: fadeInUp 0.7s ease both;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── PORTADA / HEADER ─── */
+  .prefacio-header {
+    background: var(--dark);
+    padding: 56px 40px 48px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .prefacio-header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.09;
+  }
+
+  .prefacio-header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: var(--accent2);
+    opacity: 0.08;
+  }
+
+  /* Decoración de corazones arriba */
+  .deco-hearts {
+    position: absolute;
+    top: 20px; right: 36px;
+    opacity: 0.2;
+  }
+
+  .book-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 24px;
+  }
+
+  .book-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 56px;
+    color: #FFFFFF;
+    line-height: 1.0;
+    margin-bottom: 6px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .book-title span { color: var(--accent); }
+
+  .book-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 32px;
+    letter-spacing: 0.5px;
+  }
+
+  .prefacio-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--dark);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 8px 22px;
+    border-radius: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Línea ondulada */
+  .squiggle {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* ─── CUERPO ─── */
+  .prefacio-body {
+    padding: 48px 40px 40px;
+  }
+
+  /* Carta intro */
+  .carta-intro {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .carta-intro-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .carta-intro-label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  /* Párrafos del prefacio */
+  .prefacio-text {
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: 1.85;
+    color: #3A3A3A;
+    margin-bottom: 20px;
+  }
+
+  .prefacio-text em {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--dark);
+  }
+
+  /* Pullquote destacado */
+  .pullquote {
+    background: var(--dark);
+    border-radius: 18px;
+    padding: 30px 32px;
+    margin: 32px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pullquote::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 130px;
+    color: var(--accent);
+    opacity: 0.12;
+    position: absolute;
+    top: -16px; left: 12px;
+    line-height: 1;
+  }
+
+  .pullquote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: #FFFFFF;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pullquote-text span {
+    color: var(--accent);
+  }
+
+  /* Momento clave — highlight de historia */
+  .historia-highlight {
+    background: var(--pink-light);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin: 24px 0;
+    border-left: 4px solid var(--accent2);
+    position: relative;
+  }
+
+  .historia-highlight-label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .historia-highlight-label .dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent2);
+  }
+
+  .historia-highlight p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #4A2030;
+    font-weight: 500;
+  }
+
+  .historia-highlight p em {
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* Sticky note */
+  .sticky-note {
+    background: #FFFACD;
+    border-radius: 4px;
+    padding: 13px 18px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 14px;
+    color: #5A4A00;
+    transform: rotate(-1.2deg);
+    display: inline-block;
+    margin: 4px 0 24px;
+    box-shadow: 2px 3px 8px rgba(0,0,0,0.10);
+    max-width: 320px;
+    line-height: 1.4;
+  }
+
+  /* Separador */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 32px 0;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* Bloque final — propósito del libro */
+  .proposito-box {
+    background: var(--accent-light);
+    border-radius: 18px;
+    padding: 28px 30px;
+    margin: 28px 0;
+    border: 1.5px solid rgba(245,166,35,0.25);
+  }
+
+  .proposito-box-label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .proposito-box p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #5A3A00;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .proposito-box p:last-child { margin-bottom: 0; }
+
+  .proposito-box p em {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+  }
+
+  /* Oración final del autor */
+  .oracion-autor {
+    background: var(--dark);
+    border-radius: 18px;
+    padding: 28px 30px;
+    margin-top: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .oracion-autor::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: var(--accent3);
+    opacity: 0.07;
+  }
+
+  .oracion-autor-label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .oracion-autor p {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Firma del autor */
+  .firma-section {
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .firma-avatar {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 2.5px solid var(--accent);
+    overflow: hidden;
+  }
+
+  .firma-info {}
+
+  .firma-saludo {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #888888;
+    margin-bottom: 4px;
+  }
+
+  .firma-nombre {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 22px;
+    color: var(--dark);
+    line-height: 1.1;
+  }
+
+  .firma-titulo {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #AAAAAA;
+    margin-top: 5px;
+  }
+
+  /* ─── FOOTER ─── */
+  .chapter-footer {
+    border-top: 1.5px solid var(--border);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #AAAAAA;
+  }
+
+  .footer-page {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 22px;
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ══════════════════════════════════ -->
+  <!-- PORTADA DEL PREFACIO              -->
+  <!-- ══════════════════════════════════ -->
+  <div class="prefacio-header">
+    <!-- Decoración corazones -->
+    <svg class="deco-hearts" width="90" height="90" viewBox="0 0 80 80">
+      <path d="M40 65 C40 65 10 48 10 28 C10 18 18 12 28 16 C33 18 37 22 40 27 C43 22 47 18 52 16 C62 12 70 18 70 28 C70 48 40 65 40 65Z" fill="#F5A623"/>
+      <path d="M65 30 C65 30 52 22 52 14 C52 10 56 8 60 10 C62 11 63 13 65 15 C67 13 68 11 70 10 C74 8 78 10 78 14 C78 22 65 30 65 30Z" fill="#FFFFFF" opacity="0.4"/>
+    </svg>
+
+    <div class="book-eyebrow">Carlos Ernesto Fuentes</div>
+    <div class="book-title">Juntos con<br><span>Propósito</span></div>
+    <div class="book-tagline">30 días para reestructurar tu noviazgo</div>
+
+    <div class="prefacio-badge">✦ Prefacio</div>
+
+    <!-- Línea ondulada -->
+    <div class="squiggle">
+      <svg width="200" height="16" viewBox="0 0 200 16">
+        <path d="M0 8 Q15 0 30 8 Q45 16 60 8 Q75 0 90 8 Q105 16 120 8 Q135 0 150 8 Q165 16 180 8 Q195 0 200 8"
+          fill="none" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════ -->
+  <!-- CUERPO DEL PREFACIO              -->
+  <!-- ══════════════════════════════════ -->
+  <div class="prefacio-body">
+
+    <!-- Encabezado "Una carta del autor" -->
+    <div class="carta-intro">
+      <div class="carta-intro-line"></div>
+      <div class="carta-intro-label">✦ Una carta del autor</div>
+      <div class="carta-intro-line"></div>
+    </div>
+
+    <!-- Párrafo 1 — La tarde de San Salvador -->
+    <p class="prefacio-text">
+      Hay una tarde en San Salvador que no he podido olvidar. Tenía doce años, y la lluvia golpeaba el techo de zinc de nuestra casa con una ferocidad que parecía tener intenciones propias. Mi mamá oraba en voz baja en el cuarto del fondo, como lo hacía siempre que las cosas se ponían difíciles, y yo me senté en el umbral de la puerta a mirar cómo el agua convertía el patio de tierra en un pequeño río color café.
+    </p>
+
+    <p class="prefacio-text">
+      No sé exactamente qué pasó en ese momento. Solo sé que algo se abrió adentro. Una pregunta sin palabras. Una búsqueda que comenzó esa tarde y que, más de cuarenta años después, todavía no ha terminado.
+    </p>
+
+    <!-- Pullquote 1 -->
+    <div class="pullquote">
+      <p class="pullquote-text">
+        Crecí en un hogar donde Dios era real para mi madre, pero ausente para mi padre. Esa tensión me formó de maneras que tardé mucho en <span>comprender.</span>
+      </p>
+    </div>
+
+    <!-- Párrafo 2 — Juventud y primer dolor -->
+    <p class="prefacio-text">
+      De joven tomé decisiones que no me enorgullecen. <em>Amé mal, porque nadie me había enseñado a amar bien.</em> A los dieciséis tuve una relación que terminó con un dolor que no supe manejar, y fue precisamente ese dolor el que me empujó a arrodillarme por primera vez — no como un acto religioso, sino como el acto desesperado de alguien que ya no sabe qué más hacer con lo que siente.
+    </p>
+
+    <p class="prefacio-text">
+      A los dieciocho años recibí lo que solo puedo describir como un llamado. No fue una voz del cielo, sino una certeza que se instaló en mí durante un retiro juvenil y que, desde entonces, no ha abandonado su lugar. Decidí prepararme para el ministerio, y a los veintidós años comencé a viajar como misionero.
+    </p>
+
+    <!-- Separador -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <svg width="20" height="20" viewBox="0 0 20 20">
+        <path d="M10 17 C10 17 3 13 3 7 C3 5 5 3 7.5 4 C8.8 4.5 9.5 5.5 10 6.5 C10.5 5.5 11.2 4.5 12.5 4 C15 3 17 5 17 7 C17 13 10 17 10 17Z" fill="#F5A623" opacity="0.4"/>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- Momento clave: España -->
+    <div class="historia-highlight">
+      <div class="historia-highlight-label">
+        <span class="dot"></span>
+        El momento que cambió todo
+      </div>
+      <p>
+        Fue en uno de esos viajes que llegué a España. A una pequeña comunidad cristiana en el norte, con paredes blancas y sillas de plástico y un piano desafinado que sonaba con más fe que afinación. Y ahí estaba ella. Dirigiendo la alabanza con los ojos cerrados, completamente ajena a mi existencia. Yo no dije nada ese día. Pero algo cambió.
+      </p>
+    </div>
+
+    <p class="prefacio-text">
+      Años después, cuando le conté que desde ese primer momento supe que era ella, me miró con esa mezcla de ternura y escepticismo que todavía me encanta, y me dijo: <em>"Qué conveniente para ti que Dios te lo dijera a ti y no a mí."</em> Tenía razón. El camino hacia su corazón fue largo, lleno de cartas escritas a mano, llamadas telefónicas que costaban lo que no teníamos, y una paciencia que no era mía sino prestada.
+    </p>
+
+    <!-- Sticky note -->
+    <div class="sticky-note">
+      "Un año de cartas. Y valió cada centavo que no teníamos."
+    </div>
+
+    <p class="prefacio-text">
+      Nos casamos, y continuamos en misiones juntos por varios años. Tuvimos tres hijos en circunstancias que nunca fueron ideales y siempre fueron perfectas. Y atravesamos crisis. Las cuento en este libro, no con el afán de exhibirlas, sino porque creo que <em>la honestidad es lo más cercano a la gracia que un ser humano puede ofrecer a otro.</em>
+    </p>
+
+    <!-- Separador -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <svg width="20" height="20" viewBox="0 0 20 20">
+        <circle cx="10" cy="10" r="4" fill="var(--accent)" opacity="0.5"/>
+        <circle cx="4" cy="10" r="2.5" fill="var(--accent)" opacity="0.25"/>
+        <circle cx="16" cy="10" r="2.5" fill="var(--accent)" opacity="0.25"/>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- Pullquote 2 — el invierno -->
+    <div class="pullquote">
+      <p class="pullquote-text">
+        Hubo una temporada que llamamos <span>"el invierno"</span>: dos personas que se amaban pero no sabían cómo hablarse. Fue ahí donde aprendimos lo que ningún retiro prematrimonial nos había enseñado.
+      </p>
+    </div>
+
+    <p class="prefacio-text">
+      La consejería matrimonial no fue algo que elegí como especialidad. Fue algo que me eligió a mí. Cuando las parejas comenzaron a llegar a mi oficina, me di cuenta de que lo que más necesitaban no era técnica ni información, sino alguien que los mirara y les dijera: <em>"Yo también estuve ahí. Y se puede salir."</em>
+    </p>
+
+    <!-- Bloque propósito del libro -->
+    <div class="proposito-box">
+      <div class="proposito-box-label">✦ Para quién es este libro</div>
+      <p>
+        Este devocional no está escrito para parejas perfectas. Está escrito para parejas valientes — las que deciden mirarse a los ojos y decir: <em>"Quiero hacer esto bien. Quiero hacerlo contigo. Quiero hacerlo con Dios."</em>
+      </p>
+      <p>
+        Durante treinta días caminarán juntos por temas que muchas parejas evitan hasta que ya es tarde: el propósito de su unión, la comunicación, los límites, la fe compartida, el perdón, y el tipo de amor que no depende de las circunstancias.
+      </p>
+    </div>
+
+    <!-- Oración final del autor -->
+    <div class="oracion-autor">
+      <div class="oracion-autor-label">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 1C8 1 3 4.5 3 8.5C3 10.9 5.2 13 8 13C10.8 13 13 10.9 13 8.5C13 4.5 8 1 8 1Z" stroke="#F5A623" stroke-width="1.4" stroke-linejoin="round"/>
+        </svg>
+        Mi oración al escribir estas páginas
+      </div>
+      <p>
+        Señor, que estas palabras lleguen a donde yo no puedo llegar. Que encuentren a esos dos jóvenes en el momento exacto en que las necesitan. Que no lean un libro, sino que vivan una experiencia. Que al llegar al día treinta, no sean la misma pareja que comenzó el día uno.
+      </p>
+    </div>
+
+    <!-- Firma del autor -->
+    <div class="firma-section">
+      <div class="firma-avatar">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="12" r="6" fill="#F5A623" opacity="0.7"/>
+          <path d="M4 28 C4 22 9 18 16 18 C23 18 28 22 28 28" stroke="#F5A623" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="firma-info">
+        <div class="firma-saludo">Con amor y esperanza,</div>
+        <div class="firma-nombre">Carlos Ernesto Fuentes</div>
+        <div class="firma-titulo">Pastor · Consejero matrimonial · San Salvador, El Salvador</div>
+      </div>
+    </div>
+
+  </div><!-- /prefacio-body -->
+
+  <!-- ══════════════════════════════════ -->
+  <!-- FOOTER                            -->
+  <!-- ══════════════════════════════════ -->
+  <div class="chapter-footer">
+    <div class="footer-title">Juntos con Propósito · 30 Días</div>
+    <div class="footer-page">✦</div>
+  </div>
+
+</div><!-- /page -->
+</body>
+</html>

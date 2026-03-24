@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día 2 — Juntos con Propósito</title>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FAF7F0;
+    --dark: #1C1C1C;
+    --accent: #7C3AED;
+    --accent-glow: #A78BFA;
+    --accent2: #F59E0B;
+    --accent3: #10B981;
+    --accent-light: #EDE9FE;
+    --yellow-light: #FEF3C7;
+    --green-light: #D1FAE5;
+    --border: #E8E0D0;
+  }
+
+  body {
+    background: #EDEBE5;
+    font-family: 'Nunito', sans-serif;
+    color: var(--dark);
+    padding: 40px 20px;
+  }
+
+  .page {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--cream);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+  }
+
+  /* ─── HEADER ─── */
+  .chapter-header {
+    background: #1A0533;
+    padding: 48px 40px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chapter-header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.18;
+  }
+
+  .chapter-header::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; left: -30px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: var(--accent2);
+    opacity: 0.10;
+  }
+
+  /* Estrella decorativa */
+  .deco-star {
+    position: absolute;
+    top: 20px; right: 44px;
+    opacity: 0.22;
+  }
+
+  .day-badge {
+    display: inline-block;
+    background: var(--accent-glow);
+    color: #1A0533;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .chapter-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 50px;
+    color: #FFFFFF;
+    line-height: 1.05;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .chapter-title span {
+    color: var(--accent-glow);
+  }
+
+  .chapter-subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  /* ─── CUERPO ─── */
+  .chapter-body {
+    padding: 0 40px 48px;
+  }
+
+  /* ─── LABELS DE SECCIÓN ─── */
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-label .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  /* ─── VERSO ─── */
+  .section-verso { margin: 40px 0 0; }
+
+  .verso-card {
+    background: #1A0533;
+    border-radius: 16px;
+    padding: 28px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .verso-card::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    color: var(--accent-glow);
+    opacity: 0.15;
+    position: absolute;
+    top: -10px; left: 16px;
+    line-height: 1;
+  }
+
+  .verso-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-style: italic;
+    color: #FFFFFF;
+    line-height: 1.65;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .verso-ref {
+    font-size: 11px;
+    font-weight: 900;
+    color: var(--accent-glow);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ─── CONTEXTO ─── */
+  .section-contexto { margin-top: 36px; }
+
+  .contexto-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 28px;
+    color: var(--dark);
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+
+  .contexto-title span { color: var(--accent); }
+
+  .body-text {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #3A3A3A;
+    margin-bottom: 14px;
+  }
+
+  .highlight-box {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #3B0764;
+    line-height: 1.6;
+  }
+
+  /* ─── SEPARADOR ─── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 36px 0;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* ─── ANÉCDOTA ─── */
+  .section-anecdota {
+    background: var(--yellow-light);
+    border-radius: 20px;
+    padding: 28px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-anecdota::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; right: -30px;
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: var(--accent2);
+    opacity: 0.10;
+  }
+
+  .anecdota-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #92400E;
+    margin-bottom: 8px;
+  }
+
+  .anecdota-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 22px;
+    color: var(--dark);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .anecdota-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #3A3A3A;
+    margin-bottom: 12px;
+  }
+
+  .sticky-note {
+    background: #FFFACD;
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 14px;
+    color: #5A4A00;
+    transform: rotate(1.2deg);
+    display: inline-block;
+    margin: 8px 0 20px;
+    box-shadow: 2px 3px 8px rgba(0,0,0,0.10);
+    max-width: 300px;
+    line-height: 1.4;
+  }
+
+  .exhortacion-box {
+    background: #FFFFFF;
+    border-radius: 14px;
+    border: 2px solid var(--accent2);
+    padding: 22px 24px;
+    margin-top: 16px;
+  }
+
+  .exhortacion-label {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 12px;
+  }
+
+  /* ─── ORACIÓN ─── */
+  .section-oracion {
+    margin-top: 36px;
+    background: #1A0533;
+    border-radius: 20px;
+    padding: 28px 32px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-oracion::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.10;
+  }
+
+  .oracion-icon {
+    flex-shrink: 0;
+    width: 48px; height: 48px;
+    background: rgba(167,139,250,0.15);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .oracion-content { flex: 1; }
+
+  .oracion-label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-glow);
+    margin-bottom: 8px;
+  }
+
+  .oracion-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.65;
+  }
+
+  /* ─── REFLEXIÓN ─── */
+  .section-reflexion { margin-top: 36px; }
+
+  .reflexion-badge {
+    background: var(--accent-light);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+
+  .reflexion-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 26px;
+    color: var(--dark);
+    margin-bottom: 20px;
+  }
+
+  .pregunta-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 18px 20px;
+    border: 1.5px solid var(--border);
+  }
+
+  .pregunta-num {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 900;
+    color: white;
+  }
+
+  .pregunta-text {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #3A3A3A;
+    font-weight: 600;
+    padding-top: 4px;
+  }
+
+  /* ─── ANIMACIONES HOVER ─── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .page { animation: fadeInUp 0.6s ease both; }
+
+  .verso-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .verso-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(124,58,237,0.25);
+  }
+
+  .highlight-box {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .highlight-box:hover {
+    transform: translateX(6px);
+    background: #DDD6FE;
+    box-shadow: 4px 4px 16px rgba(124,58,237,0.14);
+  }
+
+  .section-anecdota {
+    transition: box-shadow 0.3s ease;
+  }
+  .section-anecdota:hover {
+    box-shadow: 0 10px 32px rgba(245,158,11,0.15);
+  }
+
+  .section-oracion {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .section-oracion:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 36px rgba(124,58,237,0.20);
+  }
+
+  .sticky-note {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .sticky-note:hover {
+    transform: rotate(0deg) scale(1.03);
+    box-shadow: 4px 6px 18px rgba(0,0,0,0.18);
+  }
+
+  .pregunta-item {
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  }
+  .pregunta-item:hover {
+    transform: translateX(6px);
+    box-shadow: 0 6px 20px rgba(124,58,237,0.12);
+    border-color: var(--accent);
+  }
+
+  .section-reto {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .section-reto:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(124,58,237,0.22);
+  }
+
+  .reto-tag {
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+  .reto-tag:hover {
+    background: rgba(167,139,250,0.22);
+    border-color: rgba(167,139,250,0.45);
+    transform: scale(1.04);
+  }
+
+  /* Imagen hover */
+  .img-wrapper {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    border: 3px solid transparent;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+  }
+  .img-wrapper img {
+    display: block;
+    width: 100%;
+    transition: transform 0.4s ease, filter 0.3s ease;
+  }
+  .img-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 13px;
+  }
+  .img-wrapper:hover {
+    border-color: var(--accent);
+    box-shadow: 0 12px 36px rgba(124,58,237,0.28);
+  }
+  .img-wrapper:hover img {
+    transform: scale(1.04);
+    filter: brightness(0.88) saturate(1.1);
+  }
+  .img-wrapper:hover::after {
+    opacity: 0.12;
+  }
+
+  /* ─── WRITE SPACE / TEXTAREA ─── */
+  .write-space {
+    border: 2px dashed var(--border);
+    border-radius: 16px;
+    padding: 0;
+    margin-top: 16px;
+    overflow: hidden;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    background: #FDFAF5;
+  }
+
+  .write-space:focus-within {
+    border-color: var(--accent);
+    border-style: solid;
+    box-shadow: 0 0 0 4px rgba(124,58,237,0.10);
+  }
+
+  .write-space-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px 10px;
+    border-bottom: 1.5px dashed var(--border);
+    background: #F7F3EA;
+  }
+
+  .write-space-label {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #AAAAAA;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .write-space-saved {
+    font-size: 11px;
+    font-weight: 700;
+    color: #10B981;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    letter-spacing: 1px;
+  }
+  .write-space-saved.visible { opacity: 1; }
+
+  .write-space textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    background: transparent;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14.5px;
+    font-weight: 500;
+    line-height: 1.75;
+    color: #3A3A3A;
+    padding: 18px 20px;
+    min-height: 140px;
+    caret-color: var(--accent);
+  }
+
+  .write-space textarea::placeholder {
+    color: #CCCCCC;
+    font-style: italic;
+  }
+
+  .write-space-footer {
+    padding: 8px 18px 12px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid rgba(0,0,0,0.04);
+  }
+
+  .ws-btn {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .ws-btn-clear {
+    background: transparent;
+    color: #BBBBBB;
+    border: 1.5px solid #E0E0E0;
+  }
+  .ws-btn-clear:hover {
+    background: #F0F0F0;
+    color: #888;
+    border-color: #C0C0C0;
+  }
+
+  .ws-btn-save {
+    background: var(--accent);
+    color: white;
+  }
+  .ws-btn-save:hover {
+    background: #6D28D9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(124,58,237,0.32);
+  }
+
+  /* ─── RETO ─── */
+  .section-reto {
+    margin-top: 36px;
+    background: #1A0533;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .reto-top {
+    background: var(--accent-glow);
+    padding: 12px 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .reto-top-label {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #1A0533;
+  }
+
+  .reto-body {
+    padding: 24px 28px 28px;
+    position: relative;
+  }
+
+  .reto-body::before {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: var(--accent-glow);
+    opacity: 0.06;
+  }
+
+  .reto-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 26px;
+    color: var(--accent-glow);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .reto-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.80);
+    margin-bottom: 16px;
+  }
+
+  .reto-steps {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+
+  .reto-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .reto-steps li .step-num {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    background: rgba(167,139,250,0.20);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 900;
+    color: var(--accent-glow);
+  }
+
+  .reto-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(167,139,250,0.12);
+    border: 1px solid rgba(167,139,250,0.25);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent-glow);
+  }
+
+  /* ─── FOOTER ─── */
+  .chapter-footer {
+    border-top: 1.5px solid var(--border);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #AAAAAA;
+  }
+
+  .footer-page {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 22px;
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ══════════════════════════════════ -->
+  <!-- HEADER                            -->
+  <!-- ══════════════════════════════════ -->
+  <div class="chapter-header">
+
+    <!-- Brújula decorativa -->
+    <svg class="deco-star" width="90" height="90" viewBox="0 0 90 90">
+      <circle cx="45" cy="45" r="30" fill="none" stroke="#A78BFA" stroke-width="1"/>
+      <line x1="45" y1="10" x2="45" y2="80" stroke="#A78BFA" stroke-width="1.2"/>
+      <line x1="10" y1="45" x2="80" y2="45" stroke="#A78BFA" stroke-width="1.2"/>
+      <polygon points="45,14 49,40 45,36 41,40" fill="#A78BFA"/>
+      <polygon points="45,76 49,50 45,54 41,50" fill="#A78BFA" opacity="0.4"/>
+      <circle cx="45" cy="45" r="4" fill="#A78BFA"/>
+    </svg>
+
+    <div class="day-badge">✦ Día 02 · 30 días</div>
+    <div class="chapter-title">¿Y si esto tiene<br>un <span>para qué?</span></div>
+    <div class="chapter-subtitle">Propósito del noviazgo · Proverbios 19</div>
+
+    <svg width="180" height="16" viewBox="0 0 180 16">
+      <path d="M0 8 Q15 0 30 8 Q45 16 60 8 Q75 0 90 8 Q105 16 120 8 Q135 0 150 8 Q165 16 180 8"
+        fill="none" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- ══════════════════════════════════ -->
+  <!-- CUERPO                            -->
+  <!-- ══════════════════════════════════ -->
+  <div class="chapter-body">
+
+    <!-- ── VERSO ── -->
+    <div class="section-verso">
+      <div class="section-label"><span class="dot"></span> Verso de hoy</div>
+
+      <div class="verso-card">
+        <p class="verso-text">
+          "Muchos pensamientos hay en el corazón del hombre, pero el consejo del Señor permanecerá."
+        </p>
+        <div class="verso-ref">Proverbios 19:21 · RVR60</div>
+
+        <div style="position:absolute;bottom:14px;right:18px;opacity:0.35;">
+          <svg width="40" height="40" viewBox="0 0 40 40">
+            <circle cx="20" cy="20" r="15" fill="none" stroke="#A78BFA" stroke-width="1.5"/>
+            <line x1="20" y1="5" x2="20" y2="35" stroke="#A78BFA" stroke-width="1.2"/>
+            <line x1="5" y1="20" x2="35" y2="20" stroke="#A78BFA" stroke-width="1.2"/>
+            <polygon points="20,8 22,18 20,16 18,18" fill="#A78BFA"/>
+            <circle cx="20" cy="20" r="2.5" fill="#A78BFA"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CONTEXTO ── -->
+    <div class="section-contexto">
+      <div class="section-label" style="margin-top:36px;"><span class="dot" style="background:var(--accent2)"></span> Contexto del verso</div>
+
+      <div class="contexto-title">Cuando los planes<br><span>se encuentran con Dios.</span></div>
+
+      <p class="body-text">
+        El libro de Proverbios no fue escrito para los templos ni para los teólogos. Fue escrito para la vida cotidiana — para el mercado, la familia, las decisiones de todos los días. Y en medio de esa sabiduría práctica, Salomón escribe algo que suena sencillo pero sacude todo: el corazón humano puede tener muchos planes, pero hay un consejo que sobrevive a todos ellos. El de Dios.
+      </p>
+
+      <div class="highlight-box">
+        💡 La palabra hebrea para "consejo" aquí es <em>etsah</em> — no es una sugerencia. Es propósito establecido, dirección soberana, intención que no se negocia.
+      </div>
+
+      <p class="body-text">
+        Aplicado al noviazgo, este verso es una pregunta disfrazada de declaración: <em>¿cuántos de tus planes para esta relación nacieron de tu corazón, y cuántos nacieron del consejo de Dios?</em> No es una pregunta para culpar — es una invitación a alinear. Porque dos personas que se aman con sinceridad, pero construyen su relación sin dirección divina, terminan corriendo muy rápido... en círculos.
+      </p>
+
+      <p class="body-text">
+        El noviazgo no fue diseñado para ser solo una etapa feliz antes del matrimonio. Es una escuela. Un espacio donde dos personas aprenden si comparten no solo sentimientos, sino valores, fe y visión. Donde se preparan — conscientemente — para algo más grande que ellos mismos.
+      </p>
+    </div>
+
+    <!-- Separador -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <svg width="20" height="20" viewBox="0 0 20 20">
+        <polygon points="10,2 12.5,8 19,8 13.5,12 15.5,19 10,15 4.5,19 6.5,12 1,8 7.5,8" fill="var(--accent)" opacity="0.4"/>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ── ANÉCDOTA ── -->
+    <div class="section-anecdota">
+      <div class="anecdota-label">
+        <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#92400E;"></span>
+        Desde la pluma del autor
+      </div>
+      <div class="anecdota-title">Perfectos el uno para el otro.<br>Pero sin rumbo.</div>
+
+      <p class="anecdota-text">
+        Hace algunos años llegó a mi oficina una pareja que me sorprendió desde el primer momento. Jóvenes, educados, con una energía entre ellos que llenaba la sala. Se miraban como si el otro fuera lo más importante en el cuarto — y probablemente lo era. Cuando les pregunté qué los traía, el joven sonrió y dijo: "Pastor, venimos a que nos dé su bendición. Llevamos dos años juntos y estamos seguros de que somos el uno para el otro."
+      </p>
+
+      <p class="anecdota-text">
+        Los escuché. Les hice algunas preguntas de rutina. Y en algún punto de la conversación pregunté: <em>"¿Hacia dónde van juntos? ¿Cuál es la visión que comparten como pareja?"</em> Silencio. Se miraron. Luego me miraron a mí. "Pues... estar juntos", dijo ella, con una sonrisa algo insegura.
+      </p>
+
+      <div class="sticky-note">
+        "Estaban tan ocupados sintiéndose bien juntos que nunca se habían preguntado hacia dónde iban."
+      </div>
+
+      <p class="anecdota-text">
+        No era falta de amor. Era falta de brújula. Habían construido dos años de relación sobre la emoción — y la emoción es un combustible maravilloso, pero pésimo como mapa. Trabajamos juntos durante varios meses. Aprendieron a hablar de sus valores, de su fe, de cómo imaginaban la familia, el hogar, el servicio a Dios. Y cuando por fin encontraron esa visión compartida, algo cambió en ellos. No se amaron más — se amaron mejor.
+      </p>
+
+      <!-- Exhortación -->
+      <div class="exhortacion-box">
+        <div class="exhortacion-label">✦ Una palabra para ti</div>
+        <p class="anecdota-text" style="margin-bottom:12px;">
+          Quizás en este momento tú también tienes muy claro que amas a esa persona. Y eso es hermoso — no lo minimices. Pero el amor sin dirección es como un río sin cauce: mucho agua, mucha fuerza, pero sin destino.
+        </p>
+        <p class="anecdota-text" style="margin-bottom:12px;">
+          Dios no quiere interrumpir lo que tienen. Quiere darle un <em>para qué</em>. Quiere que su relación no solo se sienta bien, sino que vaya a algún lugar — que construya algo, que sirva a algo más grande que los dos.
+        </p>
+        <p class="anecdota-text" style="margin-bottom:0;">
+          Hazte esta pregunta hoy, en silencio y con honestidad: <em>¿sé hacia dónde vamos juntos?</em> No hace falta tener todo resuelto. Pero sí hace falta tener esa conversación — con tu pareja y con Dios.
+        </p>
+      </div>
+    </div>
+
+    <!-- Separador -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <svg width="20" height="20" viewBox="0 0 20 20">
+        <circle cx="10" cy="10" r="4" fill="var(--accent)" opacity="0.5"/>
+        <circle cx="4" cy="10" r="2.5" fill="var(--accent)" opacity="0.25"/>
+        <circle cx="16" cy="10" r="2.5" fill="var(--accent)" opacity="0.25"/>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ── ORACIÓN ── -->
+    <div class="section-oracion">
+      <div class="oracion-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="8" stroke="#A78BFA" stroke-width="1.8"/>
+          <line x1="12" y1="4" x2="12" y2="20" stroke="#A78BFA" stroke-width="1.5"/>
+          <line x1="4" y1="12" x2="20" y2="12" stroke="#A78BFA" stroke-width="1.5"/>
+          <polygon points="12,5 13.2,10 12,9 10.8,10" fill="#A78BFA"/>
+        </svg>
+      </div>
+      <div class="oracion-content">
+        <div class="oracion-label">✦ La oración del día</div>
+        <p class="oracion-text">
+          Hoy oren juntos para que Dios alinee sus planes con Su propósito. Pídanle que les revele no solo por qué se aman, sino hacia dónde quiere llevarlos — y que les dé el valor de construir desde esa visión, aunque todavía no la vean completa.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── REFLEXIÓN ── -->
+    <div class="section-reflexion">
+      <div class="reflexion-badge">✦ Reflexionen</div>
+      <div class="reflexion-title">3 preguntas<br>para los dos</div>
+
+      <div class="pregunta-item">
+        <div class="pregunta-num">1</div>
+        <div class="pregunta-text">¿Tienen una visión compartida como pareja? ¿Saben hacia dónde van juntos más allá de los sentimientos?</div>
+      </div>
+
+      <div class="pregunta-item">
+        <div class="pregunta-num" style="background:var(--accent2);">2</div>
+        <div class="pregunta-text">¿Cuántas de las decisiones que han tomado juntos han incluido buscar el consejo de Dios primero?</div>
+      </div>
+
+      <div class="pregunta-item">
+        <div class="pregunta-num" style="background:var(--accent3);">3</div>
+        <div class="pregunta-text">¿Qué tan diferente se vería su noviazgo si lo construyeran desde el propósito y no solo desde lo que sienten?</div>
+      </div>
+
+      <div class="write-space">
+        <div class="write-space-header">
+          <span class="write-space-label">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d="M2 10.5L4.5 10 10.5 4 9 2.5 3 8.5 2 10.5Z" fill="#AAAAAA"/>
+            </svg>
+            ✏ Escribe aquí sus respuestas
+          </span>
+          <span class="write-space-saved" id="saved2">✓ Guardado</span>
+        </div>
+        <textarea id="respuestas2" placeholder="Compartan aquí sus pensamientos sobre las 3 preguntas de reflexión..."></textarea>
+        <div class="write-space-footer">
+          <button class="ws-btn ws-btn-clear" onclick="clearText('respuestas2','saved2')">Borrar</button>
+          <button class="ws-btn ws-btn-save" onclick="saveText('respuestas2','saved2')">Guardar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Separador -->
+    <div class="divider" style="margin-bottom:0;">
+      <div class="divider-line"></div>
+      <svg width="20" height="14" viewBox="0 0 20 14">
+        <path d="M2 7 L18 7 M13 2 L18 7 L13 12" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ── RETO ── -->
+    <div class="section-reto" style="margin-top:28px;">
+      <div class="reto-top">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <polygon points="7,1 8.8,5.2 13.5,5.6 10,8.6 11.1,13.2 7,10.6 2.9,13.2 4,8.6 0.5,5.6 5.2,5.2" fill="#1A0533"/>
+        </svg>
+        <span class="reto-top-label">Reto de hoy · Día 2 de 30</span>
+      </div>
+
+      <div class="reto-body">
+        <div class="reto-title">El mapa de los dos</div>
+        <p class="reto-text">
+          Esta noche, por separado y sin consultar al otro, cada uno escribirá 3 metas personales que tiene para su vida en los próximos 5 años. Pueden ser de cualquier área: fe, carrera, familia, servicio, crecimiento personal.
+        </p>
+
+        <ul class="reto-steps">
+          <li>
+            <span class="step-num">1</span>
+            <span>Escribe tus 3 metas en privado — sin mostrarlas todavía.</span>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <span>Cuando los dos terminen, compártanlas en voz alta el uno al otro.</span>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <span>Juntos, identifiquen: ¿cuántas se alinean? ¿Alguna se contradice? ¿Dónde aparece Dios en esa lista?</span>
+          </li>
+        </ul>
+
+        <p class="reto-text" style="margin-bottom:20px;">
+          No busquen tener las mismas metas — busquen entender si van en la misma dirección.
+        </p>
+
+        <div class="reto-tag">
+          📅 Seguimiento el día 5
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /chapter-body -->
+
+  <!-- FOOTER -->
+  <div class="chapter-footer">
+    <div class="footer-title">Juntos con Propósito · 30 Días</div>
+    <div class="footer-page">02</div>
+  </div>
+
+</div>
+<script>
+  const saved2 = localStorage.getItem('jcp_day2_respuestas');
+  if (saved2) document.getElementById('respuestas2').value = saved2;
+
+  function saveText(textareaId, savedLabelId) {
+    const val = document.getElementById(textareaId).value;
+    localStorage.setItem('jcp_day2_respuestas', val);
+    const label = document.getElementById(savedLabelId);
+    label.classList.add('visible');
+    setTimeout(() => label.classList.remove('visible'), 2000);
+  }
+
+  function clearText(textareaId, savedLabelId) {
+    if (confirm('¿Seguro que quieres borrar lo escrito?')) {
+      document.getElementById(textareaId).value = '';
+      localStorage.removeItem('jcp_day2_respuestas');
+    }
+  }
+
+  document.getElementById('respuestas2').addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = (this.scrollHeight) + 'px';
+  });
+</script>
+</body>
+</html>

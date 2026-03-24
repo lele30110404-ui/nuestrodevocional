@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día 14 — Juntos con Propósito</title>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FAF7F0;
+    --dark: #1C1C1C;
+    --accent: #0E7490;
+    --accent-glow: #67E8F9;
+    --accent2: #0C4A6E;
+    --accent3: #0891B2;
+    --accent-light: #CFFAFE;
+    --water-light: #F0FDFF;
+    --border: #E8E0D0;
+    --green: #2ECC71;
+  }
+
+  body { background: #EDEBE5; font-family: 'Nunito', sans-serif; color: var(--dark); padding: 40px 20px; }
+
+  .page {
+    max-width: 680px; margin: 0 auto; background: var(--cream);
+    border-radius: 4px; overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+    animation: fadeInUp 0.6s ease both;
+    transition: box-shadow 0.3s ease;
+  }
+  .page:hover { box-shadow: 0 16px 60px rgba(0,0,0,0.24); }
+  @keyframes fadeInUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+  .chapter-header {
+    background: #042F4B;
+    padding: 48px 40px 44px;
+    position: relative; overflow: hidden;
+    transition: background 0.4s ease;
+  }
+  .chapter-header:hover { background: #063B5C; }
+  .chapter-header::before {
+    content:''; position:absolute; top:-70px; right:-70px;
+    width:260px; height:260px; border-radius:50%;
+    background: var(--accent3); opacity:0.18;
+    transition: opacity 0.4s, transform 0.4s;
+  }
+  .chapter-header:hover::before { opacity:0.28; transform:scale(1.08); }
+  .chapter-header::after {
+    content:''; position:absolute; bottom:-50px; left:-20px;
+    width:180px; height:180px; border-radius:50%;
+    background: var(--accent-glow); opacity:0.08;
+  }
+
+  .deco { position:absolute; top:18px; right:40px; opacity:0.20; }
+
+  .day-badge {
+    display:inline-block; background:var(--accent-glow); color:#042F4B;
+    font-weight:900; font-size:11px; letter-spacing:3px; text-transform:uppercase;
+    padding:6px 16px; border-radius:20px; margin-bottom:20px;
+  }
+  .chapter-title { font-family:'Permanent Marker',cursive; font-size:50px; color:#FFFFFF; line-height:1.05; margin-bottom:8px; position:relative; z-index:1; }
+  .chapter-title span { color:var(--accent-glow); }
+  .chapter-subtitle { font-size:13px; color:rgba(255,255,255,0.40); font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:28px; }
+
+  .chapter-body { padding: 0 40px 48px; }
+
+  .section-label { display:inline-flex; align-items:center; gap:8px; font-size:10px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:16px; }
+  .section-label .dot { width:6px; height:6px; border-radius:50%; background:var(--accent); display:inline-block; }
+
+  .section-verso { margin: 40px 0 0; }
+  .verso-card { background:#042F4B; border-radius:16px; padding:28px 32px; position:relative; overflow:hidden; transition:transform 0.3s, box-shadow 0.3s; }
+  .verso-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(14,116,144,0.35); }
+  .verso-card::before { content:'\201C'; font-family:'Playfair Display',serif; font-size:120px; color:var(--accent-glow); opacity:0.12; position:absolute; top:-10px; left:16px; line-height:1; }
+  .verso-text { font-family:'Playfair Display',serif; font-size:19px; font-style:italic; color:#FFFFFF; line-height:1.65; margin-bottom:16px; position:relative; z-index:1; }
+  .verso-ref { font-size:11px; font-weight:900; color:var(--accent-glow); letter-spacing:2px; text-transform:uppercase; }
+  .verso-corner { position:absolute; bottom:14px; right:18px; opacity:0.28; }
+
+  .section-contexto { margin-top:36px; }
+  .contexto-title { font-family:'Permanent Marker',cursive; font-size:28px; color:var(--dark); margin-bottom:14px; line-height:1.2; }
+  .contexto-title span { color:var(--accent); }
+  .body-text { font-size:15px; font-weight:400; line-height:1.8; color:#3A3A3A; margin-bottom:14px; }
+  .highlight-box { background:var(--accent-light); border-left:4px solid var(--accent3); border-radius:0 12px 12px 0; padding:16px 20px; margin:20px 0; font-size:15px; font-weight:700; color:#164E63; line-height:1.6; transition:transform 0.25s, background 0.25s; }
+  .highlight-box:hover { transform:translateX(6px); background:#A5F3FC; }
+
+  .divider { display:flex; align-items:center; gap:12px; margin:36px 0; }
+  .divider-line { flex:1; height:1px; background:var(--border); }
+
+  .section-anecdota { background:var(--water-light); border-radius:20px; padding:28px; position:relative; overflow:hidden; transition:box-shadow 0.3s; }
+  .section-anecdota:hover { box-shadow:0 10px 32px rgba(14,116,144,0.14); }
+  .section-anecdota::after { content:''; position:absolute; bottom:-30px; right:-30px; width:110px; height:110px; border-radius:50%; background:var(--accent3); opacity:0.09; }
+  .anecdota-label { display:inline-flex; align-items:center; gap:8px; font-size:10px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:var(--accent2); margin-bottom:8px; }
+  .anecdota-title { font-family:'Permanent Marker',cursive; font-size:22px; color:var(--dark); margin-bottom:16px; line-height:1.3; }
+  .anecdota-text { font-size:15px; line-height:1.8; color:#3A3A3A; margin-bottom:12px; }
+
+  .sticky-note { background:#FFFACD; border-radius:4px; padding:12px 16px; font-family:'Permanent Marker',cursive; font-size:14px; color:#5A4A00; transform:rotate(-1.3deg); display:inline-block; margin:8px 0 20px; box-shadow:2px 3px 8px rgba(0,0,0,0.10); max-width:310px; line-height:1.4; transition:transform 0.25s, box-shadow 0.25s; }
+  .sticky-note:hover { transform:rotate(0deg) scale(1.03); box-shadow:4px 6px 18px rgba(0,0,0,0.18); }
+
+  .exhortacion-box { background:#FFFFFF; border-radius:14px; border:2px solid var(--accent3); padding:22px 24px; margin-top:16px; }
+  .exhortacion-label { font-size:11px; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:var(--accent3); margin-bottom:12px; }
+
+  .section-oracion { margin-top:36px; background:#042F4B; border-radius:20px; padding:28px 32px; display:flex; gap:20px; align-items:flex-start; position:relative; overflow:hidden; transition:transform 0.3s, box-shadow 0.3s; }
+  .section-oracion:hover { transform:translateY(-3px); box-shadow:0 14px 36px rgba(14,116,144,0.26); }
+  .section-oracion::before { content:''; position:absolute; top:-50px; right:-50px; width:180px; height:180px; border-radius:50%; background:var(--accent-glow); opacity:0.07; }
+  .oracion-icon { flex-shrink:0; width:48px; height:48px; background:rgba(103,232,249,0.12); border-radius:14px; display:flex; align-items:center; justify-content:center; }
+  .oracion-content { flex:1; }
+  .oracion-label { font-size:10px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:var(--accent-glow); margin-bottom:8px; }
+  .oracion-text { font-family:'Playfair Display',serif; font-size:17px; font-style:italic; color:rgba(255,255,255,0.88); line-height:1.65; }
+
+  .section-reflexion { margin-top:36px; }
+  .reflexion-badge { background:var(--accent-light); border-radius:20px; padding:6px 16px; font-size:10px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:var(--accent); display:inline-block; margin-bottom:16px; }
+  .reflexion-title { font-family:'Permanent Marker',cursive; font-size:26px; color:var(--dark); margin-bottom:20px; }
+  .pregunta-item { display:flex; gap:16px; align-items:flex-start; margin-bottom:14px; background:#FFFFFF; border-radius:14px; padding:18px 20px; border:1.5px solid var(--border); transition:transform 0.22s, box-shadow 0.22s, border-color 0.22s; }
+  .pregunta-item:hover { transform:translateX(6px); box-shadow:0 6px 20px rgba(14,116,144,0.10); border-color:var(--accent3); }
+  .pregunta-num { flex-shrink:0; width:32px; height:32px; background:var(--accent); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:900; color:white; }
+  .pregunta-text { font-size:15px; line-height:1.65; color:#3A3A3A; font-weight:600; padding-top:4px; }
+
+  .write-area-wrapper { border:2px dashed var(--border); border-radius:16px; overflow:hidden; margin-top:16px; background:#FDFAF5; transition:border-color 0.25s, box-shadow 0.25s; }
+  .write-area-wrapper:focus-within { border-color:var(--accent3); border-style:solid; box-shadow:0 0 0 4px rgba(8,145,178,0.10); }
+  .write-area-header { display:flex; align-items:center; justify-content:space-between; padding:12px 18px 10px; border-bottom:1.5px dashed var(--border); background:#F7F3EA; }
+  .write-area-label { font-size:11px; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:#AAAAAA; display:flex; align-items:center; gap:7px; }
+  .write-saved { font-size:11px; font-weight:700; color:var(--green); opacity:0; transition:opacity 0.4s ease; }
+  .write-saved.visible { opacity:1; }
+  .write-textarea { width:100%; border:none; outline:none; resize:none; background:transparent; font-family:'Nunito',sans-serif; font-size:14.5px; line-height:1.75; color:#3A3A3A; padding:18px 20px; min-height:140px; caret-color:var(--accent3); }
+  .write-textarea::placeholder { color:#CCCCCC; font-style:italic; }
+  .write-footer { padding:8px 18px 12px; display:flex; justify-content:flex-end; gap:10px; }
+  .ws-btn { font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; letter-spacing:1.5px; text-transform:uppercase; border:none; border-radius:8px; padding:7px 14px; cursor:pointer; transition:all 0.2s ease; }
+  .ws-btn-clear { background:transparent; color:#BBBBBB; border:1.5px solid #E0E0E0; }
+  .ws-btn-save { background:var(--accent3); color:white; }
+  .ws-btn-save:hover { background:#0E7490; transform:translateY(-1px); box-shadow:0 4px 12px rgba(8,145,178,0.30); }
+
+  .section-reto { margin-top:36px; background:linear-gradient(135deg, #042F4B 0%, #063B5C 100%); border-radius:20px; overflow:hidden; position:relative; transition:transform 0.3s, box-shadow 0.3s; }
+  .section-reto:hover { transform:translateY(-3px); box-shadow:0 16px 40px rgba(0,0,0,0.32); }
+  .reto-top { background:var(--accent-glow); padding:12px 28px; display:flex; align-items:center; gap:8px; }
+  .reto-top-label { font-size:10px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:#042F4B; }
+  .reto-body { padding:24px 28px 28px; position:relative; }
+  .reto-title { font-family:'Permanent Marker',cursive; font-size:26px; color:var(--accent-glow); margin-bottom:12px; line-height:1.2; }
+  .reto-text { font-size:15px; line-height:1.75; color:rgba(255,255,255,0.80); margin-bottom:16px; }
+  .reto-steps { list-style:none; margin-bottom:20px; display:flex; flex-direction:column; gap:12px; }
+  .reto-steps li { display:flex; gap:14px; align-items:flex-start; color:rgba(255,255,255,0.80); font-size:15px; line-height:1.65; }
+  .step-num { flex-shrink:0; width:28px; height:28px; background:var(--accent-glow); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:900; color:#042F4B; }
+  .reto-tag { display:inline-flex; align-items:center; gap:6px; background:rgba(103,232,249,0.12); border:1px solid rgba(103,232,249,0.25); border-radius:20px; padding:6px 14px; font-size:12px; font-weight:700; color:var(--accent-glow); margin-top:4px; transition:background 0.2s ease; }
+  .reto-tag:hover { background:rgba(103,232,249,0.22); }
+
+  .chapter-footer { border-top:1.5px solid var(--border); padding:20px 40px; display:flex; justify-content:space-between; align-items:center; transition:background 0.3s ease; }
+  .chapter-footer:hover { background:#F5F0E8; }
+  .footer-title { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#AAAAAA; }
+  .footer-page { font-family:'Permanent Marker',cursive; font-size:22px; color:var(--accent3); transition:transform 0.2s ease; }
+  .chapter-footer:hover .footer-page { transform:scale(1.1); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="chapter-header">
+    <!-- Pozo / agua decorativa -->
+    <svg class="deco" width="90" height="90" viewBox="0 0 90 90">
+      <!-- Pozo -->
+      <ellipse cx="45" cy="55" rx="28" ry="10" fill="none" stroke="#67E8F9" stroke-width="2"/>
+      <rect x="17" y="30" width="56" height="25" fill="none" stroke="#67E8F9" stroke-width="2" rx="2"/>
+      <ellipse cx="45" cy="30" rx="28" ry="10" fill="none" stroke="#67E8F9" stroke-width="2"/>
+      <!-- Balde -->
+      <line x1="45" y1="10" x2="45" y2="30" stroke="#67E8F9" stroke-width="1.5"/>
+      <rect x="38" y="8" width="14" height="10" rx="2" fill="none" stroke="#67E8F9" stroke-width="1.5"/>
+      <!-- Agua dentro -->
+      <ellipse cx="45" cy="38" rx="22" ry="7" fill="#67E8F9" opacity="0.18"/>
+    </svg>
+
+    <div class="day-badge">✦ Día 14 · 30 días</div>
+    <div class="chapter-title">La señal que<br><span>nadie inventó.</span></div>
+    <div class="chapter-subtitle">Isaac y Rebeca · Elección guiada por Dios · Génesis 24</div>
+
+    <svg width="180" height="16" viewBox="0 0 180 16" style="margin-top:8px;">
+      <path d="M0 8 Q15 0 30 8 Q45 16 60 8 Q75 0 90 8 Q105 16 120 8 Q135 0 150 8 Q165 16 180 8"
+        fill="none" stroke="#67E8F9" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="chapter-body">
+
+    <!-- VERSO -->
+    <div class="section-verso">
+      <div class="section-label"><span class="dot"></span> Verso de hoy</div>
+      <div class="verso-card">
+        <p class="verso-text">
+          "Sea pues, que la doncella a quien yo dijere: Baja tu cántaro, te ruego, para que yo beba; y ella respondiere: Bebe, y también daré agua a tus camellos; que sea ésta la que tú has designado para tu siervo Isaac."
+        </p>
+        <div class="verso-ref">Génesis 24:14 · RVR60</div>
+        <div class="verso-corner">
+          <svg width="38" height="38" viewBox="0 0 38 38">
+            <ellipse cx="19" cy="26" rx="12" ry="5" fill="none" stroke="#67E8F9" stroke-width="1.5"/>
+            <rect x="7" y="14" width="24" height="12" fill="none" stroke="#67E8F9" stroke-width="1.5" rx="1"/>
+            <ellipse cx="19" cy="14" rx="12" ry="5" fill="none" stroke="#67E8F9" stroke-width="1.5"/>
+            <ellipse cx="19" cy="18" rx="9" ry="3" fill="#67E8F9" opacity="0.2"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTEXTO -->
+    <div class="section-contexto">
+      <div class="section-label" style="margin-top:36px;">
+        <span class="dot" style="background:var(--accent3)"></span> Contexto del verso
+      </div>
+      <div class="contexto-title">Orar antes de buscar.<br><span>No buscar y luego pedir.</span></div>
+
+      <p class="body-text">
+        La historia de Isaac y Rebeca es una de las más detalladas del Génesis — casi un capítulo entero dedicado a cómo se encontraron. Y lo que la hace fascinante no es el romance, sino la metodología. El siervo de Abraham llega a una tierra desconocida, se sienta junto a un pozo, y lo primero que hace es orar. No observar. No hacer una lista de candidatas. Orar.
+      </p>
+
+      <div class="highlight-box">
+        💡 La señal que el siervo pide no es de belleza, ni de familia, ni de posición social. Es de carácter: una mujer que no solo dé agua al hombre que pide, sino que también se ofrezca a dar agua a sus camellos — un trabajo enorme que nadie le pidió. Buscaba generosidad espontánea, no desempeño calculado.
+      </div>
+
+      <p class="body-text">
+        Y Rebeca aparece antes de que termine la oración. Eso no es casualidad literaria — es teología. Dios ya tenía preparada la respuesta mientras el siervo todavía estaba hablando. La dirección divina no siempre llega dramáticamente. A veces llega antes de que terminemos de pedir.
+      </p>
+
+      <p class="body-text">
+        Para una pareja que está construyendo su relación, esta historia plantea una pregunta honesta: ¿cuántas de las decisiones importantes que han tomado juntos comenzaron con oración, y cuántas comenzaron con sus propios criterios y terminaron con una bendición pedida de último momento? La diferencia entre esos dos órdenes es la diferencia entre construir con Dios y pedirle que bendiga lo que ya construyeron solos.
+      </p>
+    </div>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <svg width="22" height="22" viewBox="0 0 22 22">
+        <ellipse cx="11" cy="15" rx="8" ry="3.5" fill="none" stroke="#67E8F9" stroke-width="1.5" opacity="0.6"/>
+        <rect x="3" y="7" width="16" height="8" fill="none" stroke="#67E8F9" stroke-width="1.5" rx="1" opacity="0.6"/>
+        <ellipse cx="11" cy="7" rx="8" ry="3.5" fill="none" stroke="#67E8F9" stroke-width="1.5" opacity="0.6"/>
+        <ellipse cx="11" cy="10" rx="5.5" ry="2" fill="#67E8F9" opacity="0.18"/>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ANÉCDOTA -->
+    <div class="section-anecdota">
+      <div class="anecdota-label">
+        <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent2)"></span>
+        Desde la pluma del autor
+      </div>
+      <div class="anecdota-title">Cómo supe que<br>era ella.</div>
+
+      <p class="anecdota-text">
+        Me preguntan frecuentemente cómo supe que mi esposa era la persona correcta. Y siempre doy la misma respuesta, aunque sé que no es la que esperan escuchar: no lo supe de golpe. No hubo visión ni voz del cielo. Hubo un proceso — lento, lleno de preguntas, de cartas, de oración — donde la certeza fue llegando gradualmente como el amanecer.
+      </p>
+
+      <p class="anecdota-text">
+        Lo que sí puedo decir con claridad es esto: en cada momento importante del proceso, oré antes de actuar. Antes de escribirle la primera carta. Antes de regresar a España. Antes de pedirle que se casara conmigo. No porque fuera particularmente sabio — sino porque tenía demasiado miedo de equivocarme como para confiar solo en mis emociones.
+      </p>
+
+      <div class="sticky-note">"Tenía demasiado miedo de equivocarme para fiarme solo de lo que sentía."</div>
+
+      <p class="anecdota-text">
+        Y lo que aprendí en ese proceso es algo que le digo a cada pareja joven que aconsejo: la dirección de Dios raramente llega como un rayo. Llega como una paz que no puedes fabricar. Como una puerta que se cierra antes de que entres por el lugar equivocado. Como una claridad que aparece después de la oración y que no estaba antes de ella.
+      </p>
+
+      <p class="anecdota-text">
+        El siervo de Abraham no tenía GPS ni red social. Tenía un Dios al que conocía lo suficiente como para confiarle la búsqueda más importante de su misión. Y esa confianza — esa disposición de orar antes de actuar — fue lo que hizo que Rebeca apareciera en el momento justo.
+      </p>
+
+      <div class="exhortacion-box">
+        <div class="exhortacion-label">✦ Una palabra para ti</div>
+        <p class="anecdota-text" style="margin-bottom:12px;">
+          ¿Están buscando activamente la dirección de Dios para su relación? No de forma general — sino en las decisiones concretas que tienen por delante: los pasos que vienen, las conversaciones que necesitan tener, las etapas que se aproximan.
+        </p>
+        <p class="anecdota-text" style="margin-bottom:0;">
+          La historia de Isaac y Rebeca no garantiza que siempre será tan claro ni tan rápido. Pero sí enseña algo que no cambia: el que busca dirección antes del paso tiene una ventaja enorme sobre el que la busca después de haberse perdido.
+        </p>
+      </div>
+    </div>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <svg width="20" height="20" viewBox="0 0 20 20">
+        <circle cx="10" cy="10" r="4" fill="#67E8F9" opacity="0.5"/>
+        <circle cx="4" cy="10" r="2.5" fill="#67E8F9" opacity="0.25"/>
+        <circle cx="16" cy="10" r="2.5" fill="#67E8F9" opacity="0.25"/>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ORACIÓN -->
+    <div class="section-oracion">
+      <div class="oracion-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <ellipse cx="12" cy="17" rx="8" ry="3" stroke="#67E8F9" stroke-width="1.6"/>
+          <rect x="4" y="9" width="16" height="8" rx="1" stroke="#67E8F9" stroke-width="1.6"/>
+          <ellipse cx="12" cy="9" rx="8" ry="3" stroke="#67E8F9" stroke-width="1.6"/>
+          <line x1="12" y1="4" x2="12" y2="9" stroke="#67E8F9" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="oracion-content">
+        <div class="oracion-label">✦ La oración del día</div>
+        <p class="oracion-text">
+          Oren juntos hoy pidiéndole a Dios dirección concreta para su relación en esta etapa — no de forma general, sino con preguntas reales: ¿hacia dónde vamos? ¿Qué decisiones tenemos por delante que necesitan tu guía? ¿Hay algo que todavía no hemos puesto en tus manos?
+        </p>
+      </div>
+    </div>
+
+    <!-- REFLEXIÓN -->
+    <div class="section-reflexion">
+      <div class="reflexion-badge">✦ Reflexionen</div>
+      <div class="reflexion-title">3 preguntas<br>para los dos</div>
+
+      <div class="pregunta-item">
+        <div class="pregunta-num">1</div>
+        <div class="pregunta-text">¿Cómo toman decisiones importantes como pareja? ¿La oración es parte activa del proceso, o llega después como confirmación de lo que ya decidieron?</div>
+      </div>
+      <div class="pregunta-item">
+        <div class="pregunta-num" style="background:var(--accent3);">2</div>
+        <div class="pregunta-text">¿Han buscado juntos dirección de Dios para el futuro de su relación — los pasos que vienen, las decisiones pendientes? ¿Qué han sentido en ese proceso?</div>
+      </div>
+      <div class="pregunta-item">
+        <div class="pregunta-num" style="background:#16A34A;">3</div>
+        <div class="pregunta-text">¿Hay alguna decisión pendiente sobre su relación que necesite más oración y menos prisa? ¿Cuál es y qué los tiene apurados?</div>
+      </div>
+
+      <div class="write-area-wrapper">
+        <div class="write-area-header">
+          <span class="write-area-label">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 10.5L4.5 10 10.5 4 9 2.5 3 8.5 2 10.5Z" fill="#164E63"/></svg>
+            ✏ Escribe aquí sus respuestas
+          </span>
+          <span class="write-saved" id="saved14">✓ Guardado</span>
+        </div>
+        <textarea class="write-textarea" id="respuestas14" placeholder="Anoten juntos sus pensamientos, lo que descubrieron, lo que quieren recordar de este día..."></textarea>
+        <div class="write-footer">
+          <button class="ws-btn ws-btn-clear" onclick="clearText('respuestas14','saved14')">Borrar</button>
+          <button class="ws-btn ws-btn-save" onclick="saveText('respuestas14','saved14')">Guardar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider" style="margin-bottom:0;">
+      <div class="divider-line"></div>
+      <svg width="20" height="14" viewBox="0 0 20 14">
+        <path d="M2 7 L18 7 M13 2 L18 7 L13 12" stroke="#67E8F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- RETO -->
+    <div class="section-reto" style="margin-top:28px;">
+      <div class="reto-top">
+        <svg width="14" height="14" viewBox="0 0 14 14">
+          <ellipse cx="7" cy="10" rx="5" ry="2" fill="none" stroke="#042F4B" stroke-width="1.5"/>
+          <rect x="2" y="5" width="10" height="5" fill="none" stroke="#042F4B" stroke-width="1.5" rx="1"/>
+          <ellipse cx="7" cy="5" rx="5" ry="2" fill="none" stroke="#042F4B" stroke-width="1.5"/>
+        </svg>
+        <span class="reto-top-label">Reto de hoy · Día 14 de 30</span>
+      </div>
+
+      <div class="reto-body">
+        <div class="reto-title">Una pregunta<br>para Dios.</div>
+        <p class="reto-text">
+          Esta semana, cada uno orará en privado con una sola pregunta concreta para Dios sobre el futuro de su relación. No una petición — una pregunta genuina. Algo que necesitan saber y que solo Él puede responder.
+        </p>
+
+        <ul class="reto-steps">
+          <li>
+            <span class="step-num">1</span>
+            <span>Escribe tu pregunta antes de orar. Que sea específica, honesta, sin respuesta predefinida.</span>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <span>Ora con esa pregunta — y quédate en silencio un momento después. No esperes necesariamente una respuesta inmediata. Solo estate disponible.</span>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <span>Al final de la semana, compartan sus preguntas y lo que experimentaron — aunque haya sido silencio. El proceso de consultar es tan importante como la respuesta.</span>
+          </li>
+        </ul>
+
+        <p class="reto-text">
+          El siervo de Abraham no tenía garantías de que Dios respondería de la manera que pidió. Pero preguntó. Y eso cambió todo.
+        </p>
+
+        <div class="reto-tag">📅 Seguimiento · Reto Día 7 — ¿Completaron los 7 días de palabras que construyen?</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="chapter-footer">
+    <div class="footer-title">Juntos con Propósito · 30 Días</div>
+    <div class="footer-page">14</div>
+  </div>
+
+</div>
+
+<script>
+  const s14 = localStorage.getItem('jcp_day14');
+  if (s14) document.getElementById('respuestas14').value = s14;
+  function saveText(id, lid) {
+    localStorage.setItem('jcp_day14', document.getElementById(id).value);
+    const l = document.getElementById(lid); l.classList.add('visible');
+    setTimeout(() => l.classList.remove('visible'), 2000);
+  }
+  function clearText(id, lid) {
+    if (confirm('¿Seguro que quieres borrar lo escrito?')) {
+      document.getElementById(id).value = '';
+      localStorage.removeItem('jcp_day14');
+    }
+  }
+  document.getElementById('respuestas14').addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = this.scrollHeight + 'px';
+  });
+</script>
+</body>
+</html>

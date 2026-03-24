@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día 5 — Juntos con Propósito</title>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --cream: #FAF7F0; --dark: #1C1C1C; --accent: #F5A623; --accent2: #E8437A;
+    --accent3: #4A90D9; --accent-light: #FFF3D6; --pink-light: #FDE8F0;
+    --blue-light: #E8F2FC; --green: #2ECC71; --green-light: #E8F8EF; --border: #E8E0D0;
+  }
+  body { background: #EDEBE5; font-family: 'Nunito', sans-serif; color: var(--dark); padding: 40px 20px; }
+  .page { max-width: 680px; margin: 0 auto; background: var(--cream); border-radius: 4px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.15); animation: fadeInUp 0.6s ease both; }
+  @keyframes fadeInUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+  .chapter-header { background: var(--dark); padding: 48px 40px 40px; position: relative; overflow: hidden; }
+  .chapter-header::before { content:''; position:absolute; top:-60px; right:-60px; width:220px; height:220px; border-radius:50%; background:#E8437A; opacity:0.12; }
+  .chapter-header::after { content:''; position:absolute; bottom:-40px; left:30px; width:140px; height:140px; border-radius:50%; background:var(--accent); opacity:0.10; }
+  .day-badge { display:inline-block; background:var(--accent); color:var(--dark); font-weight:900; font-size:11px; letter-spacing:3px; text-transform:uppercase; padding:6px 16px; border-radius:20px; margin-bottom:20px; }
+  .chapter-title { font-family:'Permanent Marker',cursive; font-size:50px; color:#fff; line-height:1.05; margin-bottom:8px; position:relative; z-index:1; }
+  .chapter-title span { color:var(--accent); }
+  .chapter-subtitle { font-size:15px; color:rgba(255,255,255,0.55); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:32px; }
+  .chapter-body { padding: 0 40px 48px; }
+  .section-label { display:inline-flex; align-items:center; gap:8px; font-size:10px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:16px; }
+  .section-label .dot { width:6px; height:6px; border-radius:50%; background:var(--accent); display:inline-block; }
+  .section-verso { margin: 40px 0 0; }
+  .verso-card { background:var(--dark); border-radius:16px; padding:28px 32px; position:relative; overflow:hidden; transition:transform 0.3s ease,box-shadow 0.3s ease; }
+  .verso-card::before { content:'\201C'; font-family:'Playfair Display',serif; font-size:120px; color:var(--accent); opacity:0.15; position:absolute; top:-10px; left:16px; line-height:1; }
+  .verso-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,0.35); }
+  .verso-text { font-family:'Playfair Display',serif; font-size:19px; font-style:italic; color:#fff; line-height:1.6; margin-bottom:16px; position:relative; z-index:1; }
+  .verso-ref { font-size:12px; font-weight:800; color:var(--accent); letter-spacing:2px; text-transform:uppercase; }
+  .verso-corner { position:absolute; bottom:12px; right:16px; }
+  .section-contexto { margin-top:36px; }
+  .contexto-title { font-family:'Permanent Marker',cursive; font-size:28px; color:var(--dark); margin-bottom:14px; line-height:1.2; }
+  .contexto-title span { color:var(--accent2); }
+  .body-text { font-size:15px; font-weight:400; line-height:1.8; color:#3A3A3A; margin-bottom:14px; }
+  .highlight-box { background:var(--accent-light); border-left:4px solid var(--accent); border-radius:0 12px 12px 0; padding:16px 20px; margin:20px 0; font-size:15px; font-weight:700; color:#7A4A00; line-height:1.6; transition:transform 0.25s ease; }
+  .highlight-box:hover { transform:translateX(6px); background:#FFE9A8; }
+  .divider { display:flex; align-items:center; gap:12px; margin:36px 0; }
+  .divider-line { flex:1; height:1px; background:var(--border); }
+  .section-anecdota { background:var(--pink-light); border-radius:20px; padding:28px; position:relative; overflow:hidden; margin-top:8px; transition:box-shadow 0.3s ease; }
+  .section-anecdota::after { content:''; position:absolute; bottom:-30px; right:-30px; width:100px; height:100px; border-radius:50%; background:var(--accent2); opacity:0.08; }
+  .section-anecdota:hover { box-shadow:0 10px 32px rgba(232,67,122,0.13); }
+  .anecdota-label { display:inline-flex; align-items:center; gap:8px; font-size:10px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:var(--accent2); margin-bottom:8px; }
+  .anecdota-title { font-family:'Permanent Marker',cursive; font-size:22px; color:var(--dark); margin-bottom:16px; line-height:1.3; }
+  .anecdota-text { font-size:15px; line-height:1.8; color:#3A3A3A; margin-bottom:12px; }
+  .sticky-note { background:#FFFACD; border-radius:4px; padding:12px 16px; font-family:'Permanent Marker',cursive; font-size:14px; color:#5A4A00; transform:rotate(-1.5deg); display:inline-block; margin:8px 0 20px; box-shadow:2px 3px 8px rgba(0,0,0,0.10); max-width:300px; line-height:1.4; transition:transform 0.25s ease; }
+  .sticky-note:hover { transform:rotate(0deg) scale(1.03); }
+  .exhortacion-box { background:#fff; border-radius:14px; border:2px solid var(--accent); padding:22px 24px; margin-top:16px; }
+  .exhortacion-label { font-size:13px; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:12px; }
+  .section-oracion { margin-top:36px; background:var(--dark); border-radius:20px; padding:28px 32px; display:flex; gap:20px; align-items:flex-start; position:relative; overflow:hidden; transition:transform 0.3s ease; }
+  .section-oracion::before { content:''; position:absolute; top:-50px; right:-50px; width:180px; height:180px; border-radius:50%; background:var(--accent2); opacity:0.08; }
+  .section-oracion:hover { transform:translateY(-3px); box-shadow:0 14px 36px rgba(0,0,0,0.28); }
+  .oracion-icon { flex-shrink:0; width:48px; height:48px; background:rgba(232,67,122,0.15); border-radius:14px; display:flex; align-items:center; justify-content:center; }
+  .oracion-content { flex:1; }
+  .oracion-label { font-size:10px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+  .oracion-text { font-family:'Playfair Display',serif; font-size:17px; font-style:italic; color:rgba(255,255,255,0.88); line-height:1.65; }
+  .section-reflexion { margin-top:36px; }
+  .reflexion-badge { background:var(--blue-light); border-radius:20px; padding:6px 16px; font-size:10px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:var(--accent3); display:inline-block; margin-bottom:12px; }
+  .reflexion-title { font-family:'Permanent Marker',cursive; font-size:26px; color:var(--dark); margin-bottom:20px; }
+  .pregunta-item { display:flex; gap:16px; align-items:flex-start; margin-bottom:16px; background:#fff; border-radius:14px; padding:18px 20px; border:1.5px solid var(--border); transition:transform 0.22s ease,border-color 0.22s ease; }
+  .pregunta-item:hover { transform:translateX(6px); border-color:var(--accent3); }
+  .pregunta-num { flex-shrink:0; width:32px; height:32px; background:var(--accent3); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:900; color:#fff; }
+  .pregunta-text { font-size:15px; line-height:1.65; color:#3A3A3A; font-weight:600; padding-top:4px; }
+  .seguimiento-box { background:#E8F8EF; border-radius:14px; border:2px solid var(--green); padding:18px 22px; margin-bottom:20px; }
+  .seguimiento-label { font-size:10px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:var(--green); margin-bottom:8px; display:flex; align-items:center; gap:7px; }
+  .seguimiento-text { font-size:14.5px; line-height:1.7; color:#1A4A2A; font-weight:600; }
+  .write-space { border:2px dashed var(--border); border-radius:16px; padding:0; margin-top:16px; overflow:hidden; background:#FDFAF5; transition:border-color 0.25s ease; }
+  .write-space:focus-within { border-color:var(--accent3); border-style:solid; box-shadow:0 0 0 4px rgba(74,144,217,0.10); }
+  .write-space-header { display:flex; align-items:center; justify-content:space-between; padding:12px 18px 10px; border-bottom:1.5px dashed var(--border); background:#F7F3EA; }
+  .write-space-label { font-size:11px; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:#AAAAAA; display:flex; align-items:center; gap:7px; }
+  .write-space-saved { font-size:11px; font-weight:700; color:var(--green); opacity:0; transition:opacity 0.4s ease; }
+  .write-space-saved.visible { opacity:1; }
+  .write-space textarea { width:100%; border:none; outline:none; resize:none; background:transparent; font-family:'Nunito',sans-serif; font-size:14.5px; line-height:1.75; color:#3A3A3A; padding:18px 20px; min-height:140px; caret-color:var(--accent3); }
+  .write-space textarea::placeholder { color:#CCCCCC; font-style:italic; }
+  .write-space-footer { padding:8px 18px 12px; display:flex; justify-content:flex-end; gap:10px; }
+  .ws-btn { font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; letter-spacing:1.5px; text-transform:uppercase; border:none; border-radius:8px; padding:7px 14px; cursor:pointer; transition:all 0.2s ease; }
+  .ws-btn-clear { background:transparent; color:#BBBBBB; border:1.5px solid #E0E0E0; }
+  .ws-btn-save { background:var(--accent3); color:#fff; }
+  .ws-btn-save:hover { background:#3A7BC8; transform:translateY(-1px); }
+  .section-reto { margin-top:36px; background:linear-gradient(135deg,#1C1C1C 0%,#2D2D2D 100%); border-radius:20px; overflow:hidden; position:relative; transition:transform 0.3s ease; }
+  .section-reto:hover { transform:translateY(-3px); box-shadow:0 16px 40px rgba(0,0,0,0.30); }
+  .reto-top { background:var(--accent); padding:12px 28px; display:flex; align-items:center; gap:8px; }
+  .reto-top-label { font-size:10px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:var(--dark); }
+  .reto-body { padding:24px 28px 28px; }
+  .reto-title { font-family:'Permanent Marker',cursive; font-size:26px; color:var(--accent); margin-bottom:12px; line-height:1.2; }
+  .reto-text { font-size:15px; line-height:1.75; color:rgba(255,255,255,0.80); margin-bottom:20px; }
+  .reto-steps { list-style:none; margin-bottom:20px; display:flex; flex-direction:column; gap:12px; }
+  .reto-steps li { display:flex; gap:14px; align-items:flex-start; color:rgba(255,255,255,0.80); font-size:15px; line-height:1.65; }
+  .step-num { flex-shrink:0; width:28px; height:28px; background:var(--accent); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:900; color:var(--dark); }
+  .reto-tag { display:inline-flex; align-items:center; gap:6px; background:rgba(245,166,35,0.15); border:1px solid rgba(245,166,35,0.3); border-radius:20px; padding:6px 14px; font-size:12px; font-weight:700; color:var(--accent); }
+  .chapter-footer { border-top:1.5px solid var(--border); padding:20px 40px; display:flex; justify-content:space-between; align-items:center; }
+  .footer-title { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#AAAAAA; }
+  .footer-page { font-family:'Permanent Marker',cursive; font-size:22px; color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="chapter-header">
+    <svg style="position:absolute;top:18px;right:38px;opacity:0.22;" width="88" height="88" viewBox="0 0 88 88">
+      <path d="M44 76C44 76 10 56 10 30C10 18 20 10 32 14C38 16 42 21 44 27C46 21 50 16 56 14C68 10 78 18 78 30C78 56 44 76 44 76Z" fill="#E8437A"/>
+      <path d="M44 76C44 76 10 56 10 30C10 18 20 10 32 14C38 16 42 21 44 27C46 21 50 16 56 14C68 10 78 18 78 30C78 56 44 76 44 76Z" fill="none" stroke="#F5A623" stroke-width="2" opacity="0.5"/>
+    </svg>
+    <div class="day-badge">✦ Día 05 · 30 días</div>
+    <div class="chapter-title">Más que un<br><span>sentimiento.</span></div>
+    <div class="chapter-subtitle">Amor vs emoción · 1 Corintios 13</div>
+    <svg width="180" height="16" viewBox="0 0 180 16" style="margin-top:8px;">
+      <path d="M0 8 Q15 0 30 8 Q45 16 60 8 Q75 0 90 8 Q105 16 120 8 Q135 0 150 8 Q165 16 180 8" fill="none" stroke="#E8437A" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="chapter-body">
+
+    <!-- SEGUIMIENTO DÍA 2 -->
+    <div class="seguimiento-box" style="margin-top:36px;">
+      <div class="seguimiento-label">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 3.5" stroke="#2ECC71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Seguimiento · Reto del Día 2
+      </div>
+      <p class="seguimiento-text">¿Escribieron sus 3 metas personales para los próximos 5 años? Hoy es el momento de compartirlas. Antes de leer este capítulo, compartan esas metas en voz alta y conversen: ¿cuántas se alinean? ¿Dónde aparece Dios en esa lista? Ese ejercicio es la base del tema de hoy.</p>
+    </div>
+
+    <!-- VERSO -->
+    <div class="section-verso" style="margin-top:4px;">
+      <div class="section-label"><span class="dot"></span> Verso de hoy</div>
+      <div class="verso-card">
+        <p class="verso-text">"El amor es sufrido, es benigno; el amor no tiene envidia, el amor no es jactancioso, no se envanece; no hace nada indebido, no busca lo suyo, no se irrita, no guarda rencor."</p>
+        <div class="verso-ref">1 Corintios 13:4-5 · RVR60</div>
+        <div class="verso-corner">
+          <svg width="40" height="40" viewBox="0 0 40 40">
+            <path d="M20 34C20 34 6 26 6 14C6 8 11 5 16 7C18 8 19.2 10 20 12C20.8 10 22 8 24 7C29 5 34 8 34 14C34 26 20 34 20 34Z" fill="#E8437A" opacity="0.4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTEXTO -->
+    <div class="section-contexto">
+      <div class="section-label" style="margin-top:36px;"><span class="dot" style="background:var(--accent2)"></span> Contexto del verso</div>
+      <div class="contexto-title">Cuando el amor deja<br><span>de ser un sustantivo.</span></div>
+      <p class="body-text">Pablo escribe 1 Corintios 13 a una iglesia en crisis. No a una pareja romántica, sino a una comunidad que se llamaba a sí misma "espiritual" pero que se estaba destruyendo por dentro con rivalidades, envidia y orgullo. Y en ese contexto, Pablo les dice algo radical: el amor no es lo que sienten. Es lo que hacen.</p>
+      <div class="highlight-box">
+        💡 En el griego original, Pablo usa el verbo <em>agape</em> — no eros (amor romántico), no phileo (afecto fraterno). Es el amor que elige actuar bien independientemente de cómo se siente en ese momento.
+      </div>
+      <p class="body-text">Cada característica que Pablo lista en 1 Corintios 13 es un verbo disfrazado de adjetivo. "Es paciente" no describe un estado de ánimo — describe una decisión. "No guarda rencor" no es un sentimiento que simplemente ocurre — es una elección activa de soltar lo que duele.</p>
+      <p class="body-text">Para el noviazgo esto cambia todo. Si el amor es solo emoción, entonces depende del estado de ánimo, de la circunstancia, del día que estemos teniendo. Pero si el amor es una decisión — una forma de actuar hacia la otra persona — entonces tiene la posibilidad de sobrevivir las temporadas donde el sentimiento escasea.</p>
+    </div>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 17C10 17 3 13 3 7C3 5 5 3 7.5 4C8.8 4.5 9.5 5.5 10 6.5C10.5 5.5 11.2 4.5 12.5 4C15 3 17 5 17 7C17 13 10 17 10 17Z" fill="#E8437A" opacity="0.4"/></svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ANÉCDOTA -->
+    <div class="section-anecdota">
+      <div class="anecdota-label">
+        <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent2)"></span>
+        Desde la pluma del autor
+      </div>
+      <div class="anecdota-title">Lo que nadie me dijo<br>sobre amar de verdad.</div>
+
+      <p class="anecdota-text">
+        Llevábamos quizás tres años de casados cuando viví la lección más difícil y más importante que he recibido sobre el amor. No me la enseñó un libro ni un seminario. Me la enseñó una conversación que todavía recuerdo con precisión quirúrgica, aunque hayan pasado décadas.
+      </p>
+
+      <p class="anecdota-text">
+        Habíamos tenido una semana agotadora. La iglesia crecía más rápido de lo que podíamos sostener, teníamos dos niños pequeños, el dinero escaseaba y entre ella y yo había comenzado a instalarse ese silencio particular que no es paz — es distancia. Yo lo sabía. Ella lo sabía. Pero ninguno de los dos quería nombrarlo, porque nombrarlo era admitir que algo no estaba bien.
+      </p>
+
+      <p class="anecdota-text">
+        Una tarde llegué del trabajo decidido a ser "el buen esposo." Ayudé con los niños, lavé los platos, pregunté cómo estaba su día. Me sentía virtuoso. Me sentía como el protagonista de un sermón de ejemplo. Y cuando nos quedamos solos esa noche, esperé — con más impaciencia de la que quiero reconocer — que ella lo notara. Que dijera algo. Que me reconociera el esfuerzo.
+      </p>
+
+      <p class="anecdota-text">
+        No lo hizo. Y yo me fui a la cama herido, sintiéndome ignorado, diciéndome a mí mismo que ella era injusta, que no valoraba lo que yo hacía. Al día siguiente la frialdad entre los dos era palpable. Hasta que ella, con esa honestidad directa que aprendí a amar con el tiempo pero que en ese momento me costó mucho recibir, me dijo:
+      </p>
+
+      <div class="sticky-note">"Carlos, no me estás amando. Me estás soportando con una sonrisa. Y eso se siente diferente."</div>
+
+      <p class="anecdota-text">
+        Me quedé sin palabras. Porque sabía que tenía razón. Lo que yo había llamado "amor" esa semana había sido, en realidad, una transacción disfrazada de servicio. Estaba haciendo los movimientos correctos — pero con el motor equivocado. No lo hacía porque genuinamente quería que ella estuviera bien. Lo hacía para recibir reconocimiento. Para sentirme el bueno de la historia. Para que ella me debiera algo.
+      </p>
+
+      <p class="anecdota-text">
+        Esa noche volví a 1 Corintios 13 con ojos diferentes. <em>"El amor no busca lo suyo."</em> Cinco palabras que, de repente, pesaban una tonelada. Yo había estado buscando exactamente eso — lo mío. El crédito, el reconocimiento, la deuda emocional. Y comprendí que el amor del que habla Pablo no es el amor que uno siente cuando todo va bien. Es el amor que uno elige practicar cuando nadie está mirando, cuando no se recibe nada a cambio, cuando la otra persona no responde como esperábamos.
+      </p>
+
+      <p class="anecdota-text">
+        Esa conversación nos costó una noche difícil. Pero nos regaló años de una forma de amarnos mucho más honesta. Aprendí que el amor verdadero no necesita aplausos para seguir actuando. Y eso — eso solo se aprende cuando te quitan el aplauso y ves qué queda debajo.
+      </p>
+
+      <div class="exhortacion-box">
+        <div class="exhortacion-label">✦ Una palabra para ti</div>
+        <p class="anecdota-text" style="margin-bottom:12px;">
+          Hay algo que quiero preguntarte directamente, y quiero que lo pienses antes de responder: cuando haces algo por tu pareja — un gesto, un sacrificio, un esfuerzo — ¿qué esperas a cambio? No tienes que responderme a mí. Respóndete a ti mismo.
+        </p>
+        <p class="anecdota-text" style="margin-bottom:12px;">
+          Porque muchas parejas jóvenes están atrapadas sin saberlo en un ciclo de amor transaccional: <em>yo te doy esto y espero que tú me des aquello.</em> Y cuando el otro no responde como esperaban, aparece el resentimiento, la frialdad, la sensación de que "no soy valorado." No es que no haya amor — es que el amor que practican tiene condiciones que nunca se nombraron.
+        </p>
+        <p class="anecdota-text" style="margin-bottom:0;">
+          El amor que describe Pablo en 1 Corintios 13 no es un ideal inalcanzable. Es una decisión que se toma un día, y luego otro, y luego otro. No depende de si tu pareja lo merece ese día. No depende de si te lo reconocen. Es el amor que elige actuar bien simplemente porque esa es la clase de persona que quieres ser — y la clase de relación que quieren construir juntos.
+        </p>
+      </div>
+    </div>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="4" fill="var(--accent)" opacity="0.5"/><circle cx="4" cy="10" r="2.5" fill="var(--accent)" opacity="0.25"/><circle cx="16" cy="10" r="2.5" fill="var(--accent)" opacity="0.25"/></svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ORACIÓN -->
+    <div class="section-oracion">
+      <div class="oracion-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3C12 3 5 8 5 14C5 17.3 8.1 20 12 20C15.9 20 19 17.3 19 14C19 8 12 3 12 3Z" stroke="#E8437A" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="oracion-content">
+        <div class="oracion-label">✦ La oración del día</div>
+        <p class="oracion-text">Oren juntos pidiéndole a Dios que les revele en qué momentos su amor se ha quedado en emoción y no ha llegado a ser decisión. Pídanle que les dé la gracia de amarse como Cristo ama — no porque sientan ganas, sino porque eligieron hacerlo.</p>
+      </div>
+    </div>
+
+    <!-- REFLEXIÓN -->
+    <div class="section-reflexion">
+      <div class="reflexion-badge">✦ Reflexionen</div>
+      <div class="reflexion-title">3 preguntas<br>para los dos</div>
+
+      <div class="pregunta-item">
+        <div class="pregunta-num">1</div>
+        <div class="pregunta-text">¿Puedes identificar un momento reciente donde actuaste con amor verdadero (decisión) y no solo con emoción? ¿Y uno donde fue al revés?</div>
+      </div>
+      <div class="pregunta-item">
+        <div class="pregunta-num" style="background:var(--accent2)">2</div>
+        <div class="pregunta-text">De las características del amor en 1 Corintios 13, ¿cuál sientes que más les cuesta practicar como pareja? ¿Por qué creen que es esa?</div>
+      </div>
+      <div class="pregunta-item">
+        <div class="pregunta-num" style="background:var(--green)">3</div>
+        <div class="pregunta-text">¿Cómo cambiaría su relación si ambos se comprometieran a tomar decisiones de amor incluso en los días en que no sienten ganas de hacerlo?</div>
+      </div>
+
+      <div class="write-space">
+        <div class="write-space-header">
+          <span class="write-space-label">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 10.5L4.5 10 10.5 4 9 2.5 3 8.5 2 10.5Z" fill="#AAAAAA"/></svg>
+            ✏ Escribe aquí sus respuestas
+          </span>
+          <span class="write-space-saved" id="saved5">✓ Guardado</span>
+        </div>
+        <textarea id="respuestas5" placeholder="Compartan aquí sus pensamientos sobre las 3 preguntas de reflexión..."></textarea>
+        <div class="write-space-footer">
+          <button class="ws-btn ws-btn-clear" onclick="clearText('respuestas5','saved5')">Borrar</button>
+          <button class="ws-btn ws-btn-save" onclick="saveText('respuestas5','saved5')">Guardar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider" style="margin-bottom:0;">
+      <div class="divider-line"></div>
+      <svg width="20" height="14" viewBox="0 0 20 14"><path d="M2 7 L18 7 M13 2 L18 7 L13 12" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- RETO -->
+    <div class="section-reto" style="margin-top:28px;">
+      <div class="reto-top">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.8 5.2L13.5 5.6L10 8.6L11.1 13.2L7 10.6L2.9 13.2L4 8.6L0.5 5.6L5.2 5.2Z" fill="#1C1C1C"/></svg>
+        <span class="reto-top-label">Reto de hoy · Día 5 de 30</span>
+      </div>
+      <div class="reto-body">
+        <div class="reto-title">Un acto de amor sin emoción</div>
+        <p class="reto-text">Hoy cada uno hará algo concreto por el otro — pero con una condición: tiene que ser algo que no les salga fácil o natural en este momento. No cuando tengan ganas, sino precisamente cuando no las tengan.</p>
+        <ul class="reto-steps">
+          <li><span class="step-num">1</span><span>Piensa en algo que tu pareja aprecia y que tú no has hecho últimamente. Puede ser pequeño: un mensaje de ánimo, preparar algo que le gusta, escuchar sin interrumpir.</span></li>
+          <li><span class="step-num">2</span><span>Hazlo hoy. Sin esperar el momento perfecto. Sin que sea necesariamente correspondido.</span></li>
+          <li><span class="step-num">3</span><span>Al final del día, comenten cómo se sintieron al darlo y al recibirlo.</span></li>
+        </ul>
+        <p class="reto-text">El amor que se practica cuando no se siente es el que forma el carácter. Y el carácter es lo que queda cuando la emoción pasa.</p>
+        <div class="reto-tag">📅 Tema libre · sin seguimiento específico</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="chapter-footer">
+    <div class="footer-title">Juntos con Propósito · 30 Días</div>
+    <div class="footer-page">05</div>
+  </div>
+</div>
+
+<script>
+  const s5 = localStorage.getItem('jcp_day5');
+  if (s5) document.getElementById('respuestas5').value = s5;
+  function saveText(id, lid) {
+    localStorage.setItem('jcp_day5', document.getElementById(id).value);
+    const l = document.getElementById(lid); l.classList.add('visible');
+    setTimeout(() => l.classList.remove('visible'), 2000);
+  }
+  function clearText(id) { if(confirm('¿Borrar?')) { document.getElementById(id).value=''; localStorage.removeItem('jcp_day5'); } }
+  document.getElementById('respuestas5').addEventListener('input', function(){ this.style.height='auto'; this.style.height=this.scrollHeight+'px'; });
+</script>
+</body>
+</html>

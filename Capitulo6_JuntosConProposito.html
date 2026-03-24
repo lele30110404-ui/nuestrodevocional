@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día 6 — Juntos con Propósito</title>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --cream:#FAF7F0; --dark:#1C1C1C; --accent:#F5A623; --accent2:#E8437A; --accent3:#4A90D9; --accent-light:#FFF3D6; --pink-light:#FDE8F0; --blue-light:#E8F2FC; --green:#2ECC71; --green-light:#E8F8EF; --border:#E8E0D0; --orange:#FF6B35; --orange-light:#FFF0EA; }
+  body { background:#EDEBE5; font-family:'Nunito',sans-serif; color:var(--dark); padding:40px 20px; }
+  .page { max-width:680px; margin:0 auto; background:var(--cream); border-radius:4px; overflow:hidden; box-shadow:0 8px 40px rgba(0,0,0,0.15); animation:fadeInUp 0.6s ease both; }
+  @keyframes fadeInUp { from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);} }
+  .chapter-header { background:var(--dark); padding:48px 40px 40px; position:relative; overflow:hidden; }
+  .chapter-header::before { content:''; position:absolute; top:-60px; right:-60px; width:220px; height:220px; border-radius:50%; background:#FF6B35; opacity:0.14; }
+  .chapter-header::after { content:''; position:absolute; bottom:-40px; left:30px; width:140px; height:140px; border-radius:50%; background:var(--accent); opacity:0.10; }
+  .day-badge { display:inline-block; background:var(--accent); color:var(--dark); font-weight:900; font-size:11px; letter-spacing:3px; text-transform:uppercase; padding:6px 16px; border-radius:20px; margin-bottom:20px; }
+  .chapter-title { font-family:'Permanent Marker',cursive; font-size:50px; color:#fff; line-height:1.05; margin-bottom:8px; position:relative; z-index:1; }
+  .chapter-title span { color:#FF9A6C; }
+  .chapter-subtitle { font-size:15px; color:rgba(255,255,255,0.55); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:32px; }
+  .chapter-body { padding:0 40px 48px; }
+  .section-label { display:inline-flex; align-items:center; gap:8px; font-size:10px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:16px; }
+  .section-label .dot { width:6px; height:6px; border-radius:50%; background:var(--accent); display:inline-block; }
+  .section-verso { margin:40px 0 0; }
+  .verso-card { background:var(--dark); border-radius:16px; padding:28px 32px; position:relative; overflow:hidden; transition:transform 0.3s ease,box-shadow 0.3s ease; }
+  .verso-card::before { content:'\201C'; font-family:'Playfair Display',serif; font-size:120px; color:#FF6B35; opacity:0.15; position:absolute; top:-10px; left:16px; line-height:1; }
+  .verso-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,0.35); }
+  .verso-text { font-family:'Playfair Display',serif; font-size:20px; font-style:italic; color:#fff; line-height:1.6; margin-bottom:16px; position:relative; z-index:1; }
+  .verso-ref { font-size:12px; font-weight:800; color:#FF9A6C; letter-spacing:2px; text-transform:uppercase; }
+  .verso-corner { position:absolute; bottom:12px; right:16px; }
+  .section-contexto { margin-top:36px; }
+  .contexto-title { font-family:'Permanent Marker',cursive; font-size:28px; color:var(--dark); margin-bottom:14px; line-height:1.2; }
+  .contexto-title span { color:#FF6B35; }
+  .body-text { font-size:15px; font-weight:400; line-height:1.8; color:#3A3A3A; margin-bottom:14px; }
+  .highlight-box { background:#FFF0EA; border-left:4px solid #FF6B35; border-radius:0 12px 12px 0; padding:16px 20px; margin:20px 0; font-size:15px; font-weight:700; color:#7A2A00; line-height:1.6; transition:transform 0.25s ease; }
+  .highlight-box:hover { transform:translateX(6px); }
+  .divider { display:flex; align-items:center; gap:12px; margin:36px 0; }
+  .divider-line { flex:1; height:1px; background:var(--border); }
+  .section-anecdota { background:#FFF0EA; border-radius:20px; padding:28px; position:relative; overflow:hidden; margin-top:8px; transition:box-shadow 0.3s ease; }
+  .section-anecdota::after { content:''; position:absolute; bottom:-30px; right:-30px; width:100px; height:100px; border-radius:50%; background:#FF6B35; opacity:0.08; }
+  .section-anecdota:hover { box-shadow:0 10px 32px rgba(255,107,53,0.13); }
+  .anecdota-label { display:inline-flex; align-items:center; gap:8px; font-size:10px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:#CC4400; margin-bottom:8px; }
+  .anecdota-title { font-family:'Permanent Marker',cursive; font-size:22px; color:var(--dark); margin-bottom:16px; line-height:1.3; }
+  .anecdota-text { font-size:15px; line-height:1.8; color:#3A3A3A; margin-bottom:12px; }
+  .sticky-note { background:#FFFACD; border-radius:4px; padding:12px 16px; font-family:'Permanent Marker',cursive; font-size:14px; color:#5A4A00; transform:rotate(-1.5deg); display:inline-block; margin:8px 0 20px; box-shadow:2px 3px 8px rgba(0,0,0,0.10); max-width:300px; line-height:1.4; transition:transform 0.25s ease; }
+  .sticky-note:hover { transform:rotate(0deg) scale(1.03); }
+  .exhortacion-box { background:#fff; border-radius:14px; border:2px solid #FF6B35; padding:22px 24px; margin-top:16px; }
+  .exhortacion-label { font-size:13px; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:#FF6B35; margin-bottom:12px; }
+  .section-oracion { margin-top:36px; background:var(--dark); border-radius:20px; padding:28px 32px; display:flex; gap:20px; align-items:flex-start; position:relative; overflow:hidden; transition:transform 0.3s ease; }
+  .section-oracion::before { content:''; position:absolute; top:-50px; right:-50px; width:180px; height:180px; border-radius:50%; background:#FF6B35; opacity:0.06; }
+  .section-oracion:hover { transform:translateY(-3px); box-shadow:0 14px 36px rgba(0,0,0,0.28); }
+  .oracion-icon { flex-shrink:0; width:48px; height:48px; background:rgba(255,107,53,0.15); border-radius:14px; display:flex; align-items:center; justify-content:center; }
+  .oracion-content { flex:1; }
+  .oracion-label { font-size:10px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:#FF9A6C; margin-bottom:8px; }
+  .oracion-text { font-family:'Playfair Display',serif; font-size:17px; font-style:italic; color:rgba(255,255,255,0.88); line-height:1.65; }
+  .section-reflexion { margin-top:36px; }
+  .reflexion-badge { background:var(--blue-light); border-radius:20px; padding:6px 16px; font-size:10px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:var(--accent3); display:inline-block; margin-bottom:12px; }
+  .reflexion-title { font-family:'Permanent Marker',cursive; font-size:26px; color:var(--dark); margin-bottom:20px; }
+  .pregunta-item { display:flex; gap:16px; align-items:flex-start; margin-bottom:16px; background:#fff; border-radius:14px; padding:18px 20px; border:1.5px solid var(--border); transition:transform 0.22s ease,border-color 0.22s ease; }
+  .pregunta-item:hover { transform:translateX(6px); border-color:var(--accent3); }
+  .pregunta-num { flex-shrink:0; width:32px; height:32px; background:var(--accent3); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:900; color:#fff; }
+  .pregunta-text { font-size:15px; line-height:1.65; color:#3A3A3A; font-weight:600; padding-top:4px; }
+  .write-space { border:2px dashed var(--border); border-radius:16px; overflow:hidden; margin-top:16px; background:#FDFAF5; transition:border-color 0.25s ease; }
+  .write-space:focus-within { border-color:var(--accent3); border-style:solid; }
+  .write-space-header { display:flex; align-items:center; justify-content:space-between; padding:12px 18px 10px; border-bottom:1.5px dashed var(--border); background:#F7F3EA; }
+  .write-space-label { font-size:11px; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:#AAAAAA; display:flex; align-items:center; gap:7px; }
+  .write-space-saved { font-size:11px; font-weight:700; color:var(--green); opacity:0; transition:opacity 0.4s ease; }
+  .write-space-saved.visible { opacity:1; }
+  .write-space textarea { width:100%; border:none; outline:none; resize:none; background:transparent; font-family:'Nunito',sans-serif; font-size:14.5px; line-height:1.75; color:#3A3A3A; padding:18px 20px; min-height:140px; caret-color:var(--accent3); }
+  .write-space textarea::placeholder { color:#CCCCCC; font-style:italic; }
+  .write-space-footer { padding:8px 18px 12px; display:flex; justify-content:flex-end; gap:10px; }
+  .ws-btn { font-family:'Nunito',sans-serif; font-size:11px; font-weight:900; letter-spacing:1.5px; text-transform:uppercase; border:none; border-radius:8px; padding:7px 14px; cursor:pointer; transition:all 0.2s ease; }
+  .ws-btn-clear { background:transparent; color:#BBBBBB; border:1.5px solid #E0E0E0; }
+  .ws-btn-save { background:var(--accent3); color:#fff; }
+  .ws-btn-save:hover { background:#3A7BC8; transform:translateY(-1px); }
+  .section-reto { margin-top:36px; background:linear-gradient(135deg,#1C1C1C 0%,#2D2D2D 100%); border-radius:20px; overflow:hidden; position:relative; transition:transform 0.3s ease; }
+  .section-reto:hover { transform:translateY(-3px); box-shadow:0 16px 40px rgba(0,0,0,0.30); }
+  .reto-top { background:#FF6B35; padding:12px 28px; display:flex; align-items:center; gap:8px; }
+  .reto-top-label { font-size:10px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:#fff; }
+  .reto-body { padding:24px 28px 28px; }
+  .reto-title { font-family:'Permanent Marker',cursive; font-size:26px; color:#FF9A6C; margin-bottom:12px; line-height:1.2; }
+  .reto-text { font-size:15px; line-height:1.75; color:rgba(255,255,255,0.80); margin-bottom:20px; }
+  .reto-steps { list-style:none; margin-bottom:20px; display:flex; flex-direction:column; gap:12px; }
+  .reto-steps li { display:flex; gap:14px; align-items:flex-start; color:rgba(255,255,255,0.80); font-size:15px; line-height:1.65; }
+  .step-num { flex-shrink:0; width:28px; height:28px; background:#FF6B35; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:900; color:#fff; }
+  .reto-tag { display:inline-flex; align-items:center; gap:6px; background:rgba(255,107,53,0.15); border:1px solid rgba(255,107,53,0.3); border-radius:20px; padding:6px 14px; font-size:12px; font-weight:700; color:#FF9A6C; }
+  .chapter-footer { border-top:1.5px solid var(--border); padding:20px 40px; display:flex; justify-content:space-between; align-items:center; }
+  .footer-title { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#AAAAAA; }
+  .footer-page { font-family:'Permanent Marker',cursive; font-size:22px; color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="chapter-header">
+    <svg style="position:absolute;top:20px;right:36px;opacity:0.2;" width="80" height="80" viewBox="0 0 80 80">
+      <path d="M40 10 Q50 5 55 15 Q65 10 65 22 Q75 25 70 36 Q78 42 70 50 Q72 62 60 62 Q55 72 44 68 Q38 78 28 68 Q16 72 18 60 Q6 55 12 44 Q4 34 16 30 Q14 18 26 18 Q30 8 40 10Z" fill="#FF6B35"/>
+    </svg>
+    <div class="day-badge">✦ Día 06 · 30 días</div>
+    <div class="chapter-title">El fuego que<br><span>nos quema.</span></div>
+    <div class="chapter-subtitle">Control de la ira · Proverbios 29:11</div>
+    <svg width="180" height="16" viewBox="0 0 180 16" style="margin-top:8px;">
+      <path d="M0 8 Q15 0 30 8 Q45 16 60 8 Q75 0 90 8 Q105 16 120 8 Q135 0 150 8 Q165 16 180 8" fill="none" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="chapter-body">
+
+    <!-- VERSO -->
+    <div class="section-verso">
+      <div class="section-label"><span class="dot"></span> Verso de hoy</div>
+      <div class="verso-card">
+        <p class="verso-text">"El necio da rienda suelta a toda su ira, mas el sabio al fin la sosiega."</p>
+        <div class="verso-ref">Proverbios 29:11 · RVR60</div>
+        <div class="verso-corner">
+          <svg width="38" height="38" viewBox="0 0 38 38">
+            <path d="M19 5 Q25 3 27 9 Q33 6 33 13 Q38 16 34 22 Q38 27 32 30 Q33 37 26 36 Q22 42 16 38 Q10 42 8 36 Q1 34 5 28 Q0 22 7 19 Q4 12 10 10 Q12 4 19 5Z" fill="#FF6B35" opacity="0.4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTEXTO -->
+    <div class="section-contexto">
+      <div class="section-label" style="margin-top:36px;"><span class="dot" style="background:#FF6B35"></span> Contexto del verso</div>
+      <div class="contexto-title">El que habla en caliente<br><span>actúa de más.</span></div>
+      <p class="body-text">Proverbios fue escrito como un manual de sabiduría práctica para la vida cotidiana. Salomón no romantizaba las emociones humanas — las reconocía tal como son: poderosas, útiles a veces, destructivas otras. Y la ira, dice aquí con una claridad directa, no es el problema. El problema es darle rienda suelta.</p>
+      <div class="highlight-box">
+        💡 "Dar rienda suelta" en el hebreo original es como abrir una compuerta. El agua no es mala — pero el agua sin control arrasa con todo lo que encuentra a su paso.
+      </div>
+      <p class="body-text">En el contexto de pareja, la ira es uno de los destructores más comunes y menos reconocidos. No siempre llega con gritos. A veces llega con silencio frío, con sarcasmo calculado, con palabras dichas "en broma" que tienen filo. La ira que no se procesa bien se convierte en veneno lento.</p>
+      <p class="body-text">El sabio del que habla Proverbios no es el que no siente ira. Es el que sabe cuándo hablar, cómo hablar, y cuándo cerrar la boca hasta poder hablar desde un lugar mejor. Esa sabiduría aplicada al noviazgo puede salvar conversaciones enteras que, de otra forma, terminarían dejando cicatrices.</p>
+    </div>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 3 Q13 1 14 5 Q17 3 17 7 Q20 9 17 12 Q19 15 15 16 Q15 20 11 19 Q8 22 6 19 Q2 19 3 15 Q0 12 4 10 Q2 7 5 5 Q6 1 10 3Z" fill="#FF6B35" opacity="0.35"/></svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ANÉCDOTA -->
+    <div class="section-anecdota">
+      <div class="anecdota-label">
+        <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#CC4400;"></span>
+        Desde la pluma del autor
+      </div>
+      <div class="anecdota-title">Las palabras que no<br>puedo recuperar.</div>
+
+      <p class="anecdota-text">
+        Hay cosas que uno dice en un momento de ira que no se pueden borrar. Pueden perdonarse — gracias a Dios que sí pueden — pero no desaparecer. Se quedan en algún lugar de la memoria del otro, como una marca en la pared que se pintó encima pero que si te acercas lo suficiente, todavía puedes ver.
+      </p>
+
+      <p class="anecdota-text">
+        Yo tengo una de esas conversaciones. Fue durante uno de los períodos más exigentes de nuestro ministerio. Llevábamos años construyendo una iglesia desde cero — sin infraestructura, sin equipo suficiente, sin descanso real. Ella cargaba una parte enorme de ese peso en silencio, porque así es ella: no se queja fácil. Y yo, que debería haberlo visto, estaba demasiado ocupado mirando hacia afuera como para ver lo que pasaba adentro de nuestra casa.
+      </p>
+
+      <p class="anecdota-text">
+        Una noche, después de una semana que nos había dejado a los dos al límite, la tensión explotó. No recuerdo exactamente cómo empezó — sí recuerdo que en algún punto de la discusión yo dejé de buscar resolver el problema y empecé a buscar ganar la pelea. Y cuando uno quiere ganar, empieza a usar lo que sabe que duele. Yo sabía dónde estaban sus vulnerabilidades. Las conocía porque éramos íntimos. Y las usé.
+      </p>
+
+      <div class="sticky-note">"Usé lo que ella me había confiado en los momentos de ternura como arma en los momentos de ira."</div>
+
+      <p class="anecdota-text">
+        Lo que dije era verdad. Eso lo hace peor, no mejor. Porque la verdad dicha con ira, en el peor momento, con la intención de herir — no es honestidad. Es crueldad con disfraz. Esa noche me fui a dormir sintiéndome victorioso por un momento, y luego aplastado por lo que había hecho. Ella no dijo nada más. El silencio que siguió era de los que pesan.
+      </p>
+
+      <p class="anecdota-text">
+        Al día siguiente le pedí perdón. Me costó — no porque no lo sintiera, sino porque pedir perdón de verdad implica reconocer que hiciste algo que no debías, y el orgullo no suelta eso fácil. Ella me perdonó. Pero me hizo una pregunta que se me quedó para siempre: <em>"¿Por qué esperas a estar enojado para decirme lo que sientes?"</em>
+      </p>
+
+      <p class="anecdota-text">
+        En esa pregunta estaba todo. La ira de esa noche no había nacido de la nada. Era el resultado de semanas de cosas no dichas, de necesidades no expresadas, de cansancio acumulado que ninguno de los dos había querido nombrar porque nombrarlo parecía una debilidad. La compuerta no explota de repente — se llena gota a gota, en silencio, hasta que ya no aguanta más.
+      </p>
+
+      <div class="exhortacion-box">
+        <div class="exhortacion-label">✦ Una palabra para ti</div>
+        <p class="anecdota-text" style="margin-bottom:12px;">
+          Quiero que piensen en esto juntos, con honestidad: ¿hay algo que no han dicho? No algo insignificante — algo real. Una incomodidad que se ha quedado callada porque "no es el momento", o porque "no quiero hacer un problema de esto", o porque simplemente da miedo nombrarlo.
+        </p>
+        <p class="anecdota-text" style="margin-bottom:12px;">
+          Porque eso que no se dice no desaparece. Se acumula. Y cuando finalmente sale — y va a salir — sale en el peor momento, de la peor forma, con la peor temperatura. He visto a decenas de parejas destruir en una noche de ira años de confianza construida. No porque sean malas personas. Sino porque esperaron demasiado para hablar lo que debieron haber hablado mucho antes.
+        </p>
+        <p class="anecdota-text" style="margin-bottom:0;">
+          La sabiduría que menciona Proverbios no es frialdad emocional. Es la valentía de decir lo que sientes antes de que se convierta en fuego. Una pareja que aprende a hablar a tiempo no es una pareja que nunca tiene conflictos — es una pareja que no le teme a tenerlos, porque sabe cómo atravesarlos sin destruirse en el intento.
+        </p>
+      </div>
+    </div>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="4" fill="var(--accent)" opacity="0.5"/><circle cx="4" cy="10" r="2.5" fill="var(--accent)" opacity="0.25"/><circle cx="16" cy="10" r="2.5" fill="var(--accent)" opacity="0.25"/></svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ORACIÓN -->
+    <div class="section-oracion">
+      <div class="oracion-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 4 Q15 2 16 7 Q20 5 20 10 Q23 13 20 17 Q22 21 17 22 Q15 26 11 24 Q8 27 5 24 Q0 23 3 18 Q0 14 4 11 Q3 6 7 5 Q8 1 12 4Z" stroke="#FF9A6C" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="oracion-content">
+        <div class="oracion-label">✦ La oración del día</div>
+        <p class="oracion-text">Oren juntos pidiéndole a Dios que les dé la sabiduría para hablar lo que sienten antes de que se convierta en ira, y la templanza para no herir con la verdad cuando estén enojados. Pidan también gracia para pedir perdón cuando fallen en esto.</p>
+      </div>
+    </div>
+
+    <!-- REFLEXIÓN -->
+    <div class="section-reflexion">
+      <div class="reflexion-badge">✦ Reflexionen</div>
+      <div class="reflexion-title">3 preguntas<br>para los dos</div>
+      <div class="pregunta-item">
+        <div class="pregunta-num">1</div>
+        <div class="pregunta-text">¿Cómo expresas la ira? ¿Te descargas con palabras, te cierras en silencio, o hay otro patrón que reconoces en ti mismo?</div>
+      </div>
+      <div class="pregunta-item">
+        <div class="pregunta-num" style="background:#FF6B35">2</div>
+        <div class="pregunta-text">¿Hay algo que has sentido pero no has dicho, que podría estar generando tensión entre ustedes sin que lo hayan nombrado todavía?</div>
+      </div>
+      <div class="pregunta-item">
+        <div class="pregunta-num" style="background:var(--green)">3</div>
+        <div class="pregunta-text">¿Qué señal podrían acordar entre los dos para indicar "necesito pausar esta conversación antes de que me salga lo que no quiero decir"?</div>
+      </div>
+      <div class="write-space">
+        <div class="write-space-header">
+          <span class="write-space-label">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 10.5L4.5 10 10.5 4 9 2.5 3 8.5 2 10.5Z" fill="#AAAAAA"/></svg>
+            ✏ Escribe aquí sus respuestas
+          </span>
+          <span class="write-space-saved" id="saved6">✓ Guardado</span>
+        </div>
+        <textarea id="respuestas6" placeholder="Compartan aquí sus pensamientos sobre las 3 preguntas de reflexión..."></textarea>
+        <div class="write-space-footer">
+          <button class="ws-btn ws-btn-clear" onclick="clearText('respuestas6','saved6')">Borrar</button>
+          <button class="ws-btn ws-btn-save" onclick="saveText('respuestas6','saved6')">Guardar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider" style="margin-bottom:0;">
+      <div class="divider-line"></div>
+      <svg width="20" height="14" viewBox="0 0 20 14"><path d="M2 7 L18 7 M13 2 L18 7 L13 12" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- RETO -->
+    <div class="section-reto" style="margin-top:28px;">
+      <div class="reto-top">
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 2 Q9 1 9.5 4 Q12 3 12 6 Q14 8 12 10 Q13 13 10 13 Q9 16 7 15 Q5 16 4 13 Q1 12 3 10 Q1 7 3 5 Q4 2 7 2Z" fill="#fff" opacity="0.8"/></svg>
+        <span class="reto-top-label">Reto de hoy · Día 6 de 30</span>
+      </div>
+      <div class="reto-body">
+        <div class="reto-title">El semáforo de la pareja</div>
+        <p class="reto-text">Hoy van a crear juntos un acuerdo sencillo para los momentos de tensión alta. Llámalo su "semáforo" — una señal que ambos entienden y respetan cuando una conversación se está calentando demasiado.</p>
+        <ul class="reto-steps">
+          <li><span class="step-num">1</span><span>Elijan una palabra, gesto o frase que signifique: <strong style="color:rgba(255,255,255,0.9)">"Necesito 10 minutos antes de seguir hablando."</strong> Algo que los dos se comprometan a respetar sin verlo como derrota.</span></li>
+          <li><span class="step-num">2</span><span>Escriban ese acuerdo — puede ser tan simple como "usamos la palabra 'pausa'" — y guárdenlo donde los dos lo vean.</span></li>
+          <li><span class="step-num">3</span><span>El compromiso es que quien pida la pausa, vuelve. No se usa para huir — se usa para calmarse y regresar con mejor disposición.</span></li>
+        </ul>
+        <p class="reto-text">Las parejas que tienen herramientas acordadas para los momentos difíciles no pelean menos. Pelean mejor.</p>
+        <div class="reto-tag">📅 Seguimiento el día 10</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="chapter-footer">
+    <div class="footer-title">Juntos con Propósito · 30 Días</div>
+    <div class="footer-page">06</div>
+  </div>
+</div>
+<script>
+  const s6 = localStorage.getItem('jcp_day6');
+  if (s6) document.getElementById('respuestas6').value = s6;
+  function saveText(id, lid) { localStorage.setItem('jcp_day6', document.getElementById(id).value); const l=document.getElementById(lid); l.classList.add('visible'); setTimeout(()=>l.classList.remove('visible'),2000); }
+  function clearText(id) { if(confirm('¿Borrar?')) { document.getElementById(id).value=''; localStorage.removeItem('jcp_day6'); } }
+  document.getElementById('respuestas6').addEventListener('input', function(){ this.style.height='auto'; this.style.height=this.scrollHeight+'px'; });
+</script>
+</body>
+</html>
